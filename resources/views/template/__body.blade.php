@@ -1,16 +1,17 @@
-<!doctype html>
-<html lang="en">
+@include('template._header')
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Language" content="en">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Analytics Dashboard - This is an example dashboard created using build-in elements and components.</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-    <meta name="description" content="This is an example dashboard created using build-in elements and components.">
-    <meta name="msapplication-tap-highlight" content="no">
-<script defer src="{{ asset('template/assets/scripts/main.js')}}"></script><script defer src="{{ asset('template/assets/scripts/demo.js')}}"></script><script defer src="{{ asset('template/assets/scripts/toastr.js')}}"></script><script defer src="{{ asset('template/assets/scripts/scrollbar.js')}}"></script><script defer src="{{ asset('template/assets/scripts/fullcalendar.js')}}"></script><script defer src="{{ asset('template/assets/scripts/maps.js')}}"></script><script defer src="{{ asset('template/assets/scripts/chart_js.js')}}"></script></head>
+<!-- <body class="sidebar-mini layout-fixed control-sidebar-slide-open text-sm sidebar-collapse" style="height: auto;">
+    <div class="wrapper">
+      @include('template.topNavigation')
+      
+      @include('template.sideNavigation')
+
+      <div class="content-wrapper">
+          @yield('konten')
+      </div> -->
+
+
+
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
@@ -1361,6 +1362,7 @@
                     </div>    </div>
                 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         </div>
-    </div>
-</body>
-</html>
+    </div>      
+
+@yield('js')
+@include('template.footer')
