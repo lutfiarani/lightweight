@@ -4,7 +4,7 @@ use App\Http\Controllers\WeightController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return view('test');
 });
 
 // Group rute yang dilindungi dengan middleware 'role:admin'
