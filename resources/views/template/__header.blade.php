@@ -11,6 +11,7 @@
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
     <link rel="stylesheet" href="{{ asset('template/fontawesomepro-652/fontawesomepro-652/fontawesome-pro-6.5.2-web/css/all.min.css') }}" >
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="{{ asset('template/assets/scripts/main.js')}}"></script>
     <script defer src="{{ asset('template/assets/scripts/demo.js')}}"></script>
     <script defer src="{{ asset('template/assets/scripts/toastr.js')}}"></script>

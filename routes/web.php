@@ -8,23 +8,73 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Group rute yang dilindungi dengan middleware 'role:admin'
 Route::middleware(['role:prod'])->group(function () {
     Route::get('/prod/input_data',[WeightController::class, 'input_data_production'])->name('input_data_production');
-    
+    Route::get('/prod/get_po/{po_no}',[WeightController::class, 'get_data_po'])->name('get_data_po');
 });
-
-// Route::middleware(['auth', 'verified', 'role:prod'])
-//     ->group(function () {
-//         Route::get('/prod/input_data',[WeightController::class, 'input_data_production'])->name('input_data_production');
-// });
-
-
-// Route::get('/prod/input_data',[WeightController::class, 'input_data_production'])->name('input_data_production');
-// Route::get('/prod/input_data', [WeightController::class, 'input_data_production'])->middleware(['auth', 'verified','role:prod'])->name('input_data_production');
-
-
-
 
 
 Route::get('/dashboard', function () {

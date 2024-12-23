@@ -30,7 +30,15 @@
         </span>
     </div>    <div class="app-header__content">
         <div class="app-header-left">
-            
+            <ul class="header-menu nav">
+                <li class="nav-item" style="margin-right:10px">
+                    <button id="connectButton" class="btn btn-dark">Connect to Digital Weight</button>
+                    <button id="disconnectButton" class="btn btn-dark">Disconnect Digital Weight</button>
+                </li>
+                <li class="btn-group nav-item">
+                    <div id="output"></div>
+                </li>
+            </ul>        
         </div>
         <div class="app-header-right">
             <div class="header-btn-lg pe-0">
@@ -38,6 +46,9 @@
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left">
                             <div class="btn-group">
+                                
+                                
+
                                 <a data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
                                     <img width="42" class="rounded-circle" src="{{ asset('template/assets/images/avatars/1.jpg' )}}" alt="">
                                     <i class="fa fa-angle-down ms-2 opacity-8"></i>

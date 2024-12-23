@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\WeightModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,4 +26,14 @@ class WeightController extends Controller
 
         return view('prod.input_data', $data);
     }
+
+    function get_data_po($po_no){
+        $data = WeightModel::get_data_po($po_no);
+
+        return response()->json(array(
+            'data'          => $data
+        ));
+    }
+
+
 }
