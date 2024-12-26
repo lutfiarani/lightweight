@@ -31,7 +31,9 @@ class WeightController extends Controller
         $data = WeightModel::get_data_po($po_no);
 
         return response()->json(array(
-            'data'          => $data
+            'po_information'            => $data[0], 
+            'midas_information'         => $data[1],
+            'size_information'          => $data[2],
         ));
     }
 

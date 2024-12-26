@@ -19,95 +19,117 @@
     
     <div class="row" style="margin:2px; background-color:white; border-radius:0.375rem; padding-top :10px; padding-left:10px; padding-right:10px" >
         <div class="col-xl-2" style="padding:0px; ">
-            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Model<h5 class="card-title">VL COURT 3.0</h5></div>
+            <!-- <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Model<h5 class="card-title">VL COURT 3.0</h5></div> -->
             <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">PO No<h5 class="card-title"><input type="text" class="form-control " id="po_no" ></h5></div>
-            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Model<h5 class="card-title" ><input type="text" class="form-control form-control-xs" id="model_name" > </h5></div>
-            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Article<input type="text" class="form-control h-25" id="article" ></div>
-            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">PO Qty<h5 class="card-title"><input type="text" class="form-control form-control-sm" id="po_qty" ></h5></div>
-            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Destination<h5 class="card-title"><input type="text" class="form-control form-control-sm" id="destination" ></h5></div>
-            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">CRD<h5 class="card-title"><input type="text" class="form-control form-control-sm" id="crd" ></h5></div>
-            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Season<h5 class="card-title"><input type="text" class="form-control form-control-sm" id="season" ></h5></div>
+            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Model<h5 class="card-title" ><input type="text" class="form-control form-control-xs" id="model_name" readonly> </h5></div>
+            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Article<input type="text" class="form-control h-25" id="article" readonly></div>
+            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">PO Qty<h5 class="card-title"><input type="text" class="form-control form-control-sm" id="po_qty" readonly></h5></div>
+            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Destination<h5 class="card-title"><input type="text" class="form-control form-control-sm" id="destination" readonly></h5></div>
+            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">CRD<h5 class="card-title"><input type="text" class="form-control form-control-sm" id="crd" readonly></h5></div>
+            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Season<h5 class="card-title"><input type="text" class="form-control form-control-sm" id="season" readonly></h5></div>
         </div>
         <div class="col-xl-6">
             <div class="row" style="margin:0px">
                 <div class="col-md-6" style="padding:2px">
-                    <div class="position-relative mb-3">
-                        <label for="exampleEmail11" class="form-label"><b>Size</b></label>
-                        <input name="email" id="exampleEmail11" placeholder="with a placeholder" type="email" class="form-control">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="position-relative mb-3">
+                                <label for="exampleEmail11" class="form-label"><b>Size</b></label>
+                                <input name="size" id="size" id="exampleEmail11" placeholder="Size" type="text" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative mb-3">
+                                <label for="exampleEmail11" class="form-label"><b>qty</b></label>
+                                <input name="size_qty" id="size_qty" id="exampleEmail11" placeholder="Size Qty" type="text" class="form-control" readonly>
+                            </div>
+                        </div>
                     </div>
                     <div class="position-relative ">
                         <label for="exampleEmail11" class="form-label"><b>Basic Define</b></label>
                     </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom">
+                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding:0.5rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading"><h5>MIDSOLE</h5></div>
                                 <div class="widget-heading"><i class="fa-light fa-boot fa-3x"></i></div>
                             </div>
                             <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span>0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span>0.00g</span></div>
+                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span id="min_max_midsole">0.00 - 0.00</span></div>
+                                <div class="widget-numbers text-white" style="float:right"><span id="standard_midsole">0.00g</span></div>
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom">
+                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding:0.5rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading"><h5>OUTSOLE</h5></div>
                                 <div class="widget-heading"><i class="fa-light fa-boot fa-3x"></i></div>
                             </div>
                             <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span>0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span>0.00g</span></div>
+                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span id="min_max_outsole">0.00 - 0.00</span></div>
+                                <div class="widget-numbers text-white" style="float:right"><span id="standard_outsole">0.00g</span></div>
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom">
+                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding:0.5rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading"><h5>STOCKFIT</h5></div>
                                 <div class="widget-heading"><i class="fa-light fa-boot fa-3x"></i></div>
                             </div>
                             <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span>0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span>0.00g</span></div>
+                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span id="min_max_stockfit">0.00 - 0.00</span></div>
+                                <div class="widget-numbers text-white" style="float:right"><span id="standard_stockfit">0.00g</span></div>
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom">
+                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding:0.5rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading"><h5>UPPER</h5></div>
                                 <div class="widget-heading"><i class="fa-light fa-boot fa-3x"></i></div>
                             </div>
                             <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span>0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span>0.00g</span></div>
+                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span id="min_max_upper">0.00 - 0.00</span></div>
+                                <div class="widget-numbers text-white" style="float:right"><span id="standard_upper">0.00g</span></div>
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom">
+                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding:0.5rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading"><h5>ASSEMBLY</h5></div>
                                 <div class="widget-heading"><i class="fa-light fa-boot fa-3x"></i></div>
                             </div>
                             <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span>0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span>0.00g</span></div>
+                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span id="min_max_assembly">0.00 - 0.00</span></div>
+                                <div class="widget-numbers text-white" style="float:right"><span id="standard_assembly">0.00g</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding:0.5rem">
+                        <div class="widget-content-wrapper text-white">
+                            <div class="widget-content-left">
+                                <div class="widget-heading"><h5>SOCKLINER</h5></div>
+                                <div class="widget-heading"><i class="fa-light fa-boot fa-3x"></i></div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span id="min_max_sockliner">0.00 - 0.00</span></div>
+                                <div class="widget-numbers text-white" style="float:right"><span id="standard_sockliner">0.00g</span></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6" style="padding:2px">
                     <div class="position-relative mb-3">
-                        <label for="exampleEmail11" class="form-label"><b>Quantity</b></label>
-                        <input name="email" id="exampleEmail11" placeholder="with a placeholder" type="email" class="form-control">
+                        <label for="exampleEmail11" class="form-label"><b>Target Quantity </b></label>
+                        <input name="target_qty"  id="target_qty" placeholder="Target Qty" type="number" class="form-control">
                     </div>
                     <div class="position-relative ">
                         <label for="exampleEmail11" class="form-label"><b>Production Weight Result</b></label>
                     </div>
-                    <div class="card mb-1 widget-content bg-success">
+                    <div class="card mb-1 widget-content bg-success" style="padding:0.5rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
@@ -119,7 +141,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-success">
+                    <div class="card mb-1 widget-content bg-success" style="padding:0.5rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
@@ -131,7 +153,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-success">
+                    <div class="card mb-1 widget-content bg-success" style="padding:0.5rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
@@ -143,7 +165,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-success">
+                    <div class="card mb-1 widget-content bg-success" style="padding:0.5rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
@@ -155,7 +177,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-success">
+                    <div class="card mb-1 widget-content bg-success" style="padding:0.5rem">
+                        <div class="widget-content-wrapper text-white">
+                            <div class="widget-content-left">
+                                <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
+                                <div class="widget-numbers text-white" style="float:left"><span>5</span></div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span>0.00 - 0.00</span></div>
+                                <div class="widget-numbers text-white" style="float:right"><span>0.00g</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-1 widget-content bg-success" style="padding:0.5rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
@@ -232,6 +266,7 @@
                 if (event.key === 'Enter' || event.keyCode === 13) {
                     const po_no = $(this).val();
                     get_data_po(po_no)
+
                 }
             });
 
@@ -246,25 +281,105 @@
                     type:"get",
                     url:"{{ url('/prod/get_po') }}"+"/"+po_no,
                     success: function(hasil){
-                        // console.log(hasil)
-                        if(hasil.data == null){
-                            alert('PO not found')
+                        console.log(hasil)
+                        // if(hasil.midas_information)
+                        if(hasil.midas_information.length == 0){
+                            alert('Standard information not found, please contact Development')
+                        }else if(hasil.po_information.length == 0){
+                            alert('PO information not found')
+                        }else if(hasil.size_information.length == 0){
+                            alert('Size information not found')
                         }else{
-                            $('#model_name').val(hasil.data.MODEL_NAME)
-                            $('#article').val(hasil.data.ART_NO)
-                            $('#po_qty').val(hasil.data.MODEL_NAME)
-                            $('#destination').val(hasil.data.COUNTRY)
-                            const date = hasil.data.CRD;
+                            var tampil_po = hasil.po_information[0]
+                            var tampil_midas = hasil.midas_information[0]
+                            var tampil_size = hasil.size_information[0]
+
+                            // console.log(tampil_po)
+                            $('#model_name').val(tampil_po.MODEL_NAME)
+                            $('#article').val(tampil_po.ART_NO)
+                            $('#po_qty').val(tampil_po.TOTAL_QTY)
+                            $('#destination').val(tampil_po.COUNTRY)
+                            const date = tampil_po.CRD;
                             const datePart = date.substring(0, 10);
                             $('#crd').val(datePart)
-                            $('#season').val()
+                            $('#season').val(tampil_midas.season)
+
+                            $('#size').val(tampil_midas.sample_size)
+                            $('#size_qty').val(tampil_size.jumlah_qty)
+
+                            // perkalian
+                            var min_max_perkalian = 5
+
+                            var min_midsole = parseFloat(tampil_midas.MS) - parseFloat(tampil_midas.MS * min_max_perkalian / 100)
+                            var max_midsole = parseFloat(tampil_midas.MS) + parseFloat(tampil_midas.MS * min_max_perkalian / 100)
+                            var min_max_midsole = min_midsole.toFixed(2) +' - '+max_midsole.toFixed(2)
+
+                            var min_outsole = parseFloat(tampil_midas.OS) - parseFloat(tampil_midas.OS * min_max_perkalian / 100)
+                            var max_outsole = parseFloat(tampil_midas.OS) + parseFloat(tampil_midas.OS * min_max_perkalian / 100)
+                            var min_max_outsole = min_outsole.toFixed(2) +' - '+max_outsole.toFixed(2)
+
+                            var min_stockfit = parseFloat(tampil_midas.SF) - parseFloat(tampil_midas.SF * min_max_perkalian / 100)
+                            var max_stockfit = parseFloat(tampil_midas.SF) + parseFloat(tampil_midas.SF * min_max_perkalian / 100)
+                            var min_max_stockfit = min_stockfit.toFixed(2) +' - '+max_stockfit.toFixed(2)
+                            
+                            var min_upper = parseFloat(tampil_midas.UP) - parseFloat(tampil_midas.UP * min_max_perkalian / 100)
+                            var max_upper = parseFloat(tampil_midas.UP) + parseFloat(tampil_midas.UP * min_max_perkalian / 100)
+                            var min_max_upper = min_upper.toFixed(2) +' - '+max_upper.toFixed(2)
+
+                            var min_assembly = parseFloat(tampil_midas.AS) - parseFloat(tampil_midas.AS * min_max_perkalian / 100)
+                            var max_assembly = parseFloat(tampil_midas.AS) + parseFloat(tampil_midas.AS * min_max_perkalian / 100)
+                            var min_max_assembly = min_assembly.toFixed(2) +' - '+max_assembly.toFixed(2)
+
+                            var min_sockliner = parseFloat(tampil_midas.sockliner) - parseFloat(tampil_midas.sockliner * min_max_perkalian / 100)
+                            var max_sockliner = parseFloat(tampil_midas.sockliner) + parseFloat(tampil_midas.sockliner * min_max_perkalian / 100)
+                            var min_max_sockliner = min_sockliner.toFixed(2) +' - '+max_sockliner.toFixed(2)
+
+
+                            $('#standard_midsole').text(tampil_midas.MS)
+                            $('#min_max_midsole').text(min_max_midsole)
+
+                            $('#standard_outsole').text(tampil_midas.OS)
+                            $('#min_max_outsole').text(min_max_outsole)
+
+                            $('#standard_stockfit').text(tampil_midas.SF)
+                            $('#min_max_stockfit').text(min_max_stockfit)
+
+                            $('#standard_upper').text(tampil_midas.UP)
+                            $('#min_max_upper').text(min_max_upper)
+
+                            $('#standard_assembly').text(tampil_midas.AS)
+                            $('#min_max_assembly').text(min_max_assembly)
+
+                            $('#standard_sockliner').text(tampil_midas.sockliner)
+                            $('#min_max_sockliner').text(min_max_sockliner)
+
+                            
                         }
                     }
                 });
             }
 
 
-            $('#disconnectButton').hide();
+            const outputDiv = document.getElementById('output');
+            const connectedValue = outputDiv.textContent.trim();
+            console.log(localStorage.getItem('preferredPort')); 
+            
+            if(localStorage.getItem('preferredPort') == null){
+                disconnect_button()
+            }else{
+                connect_button()
+            }
+            
+            function connect_button(){
+                $('#disconnectButton').show();
+                $('#connectButton').hide();
+            }
+
+            function disconnect_button(){
+                $('#disconnectButton').hide();
+                $('#connectButton').show();
+            }
+            
             let port, reader, isReading = false;
 
             $('#connectButton').click(async function () {
@@ -278,8 +393,9 @@
                     console.log('Connected:', localStorage.getItem('preferredPort'));
 
                     $('#output').html('<span class="btn btn-success">Connected</span>');
-                    $('#connectButton').hide();
+                    
                     $('#disconnectButton').show();
+                    $('#connectButton').hide();
 
                     const textDecoder = new TextDecoderStream();
                     const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
@@ -329,8 +445,8 @@
 
                     // Update the UI
                     $('#output').html('<span class="btn btn-danger">Not Connected</span>');
-                    $('#connectButton').show();
                     $('#disconnectButton').hide();
+                    $('#connectButton').show();
                 } catch (error) {
                     console.error('Disconnection error:', error);
                     $('#output').append(`<p>Error: ${error.message}</p>`);
@@ -383,6 +499,8 @@
                         await tryOpenPort(port);
 
                         $('#output').html('<span class="btn btn-success">Connected</span>');
+                        $('#disconnectButton').show();
+                        $('#connectButton').hide();
 
                         const textDecoder = new TextDecoderStream();
                         const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);

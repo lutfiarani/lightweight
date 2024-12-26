@@ -9,9 +9,9 @@ class WeightModel extends Model
 {
     //
     public static function get_data_po($po_no){
-        $data = collect(DB::select("
+        $data = DB::selectResultSets("
             EXEC GET_PO_INFORMATION @PO_NO = '$po_no'
-        "))->first();
+        ");
         return $data;
     }
 
