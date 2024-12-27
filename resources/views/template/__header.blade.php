@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('template/fontawesomepro-652/fontawesomepro-652/fontawesome-pro-6.5.2-web/css/all.min.css') }}" >
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="{{ asset('template/assets/scripts/main.js')}}"></script>

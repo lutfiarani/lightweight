@@ -48,7 +48,7 @@
                     <div class="position-relative ">
                         <label for="exampleEmail11" class="form-label"><b>Basic Define</b></label>
                     </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding:0.5rem">
+                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading"><h5>MIDSOLE</h5></div>
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding:0.5rem">
+                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading"><h5>OUTSOLE</h5></div>
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding:0.5rem">
+                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading"><h5>STOCKFIT</h5></div>
@@ -84,7 +84,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding:0.5rem">
+                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading"><h5>UPPER</h5></div>
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding:0.5rem">
+                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading"><h5>ASSEMBLY</h5></div>
@@ -108,7 +108,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding:0.5rem">
+                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading"><h5>SOCKLINER</h5></div>
@@ -124,12 +124,12 @@
                 <div class="col-md-6" style="padding:2px">
                     <div class="position-relative mb-3">
                         <label for="exampleEmail11" class="form-label"><b>Target Quantity </b></label>
-                        <input name="target_qty"  id="target_qty" placeholder="Target Qty" type="number" class="form-control">
+                        <input name="target_qty"  id="target_qty" placeholder="Target Qty" type="number" class="form-control" readonly>
                     </div>
                     <div class="position-relative ">
                         <label for="exampleEmail11" class="form-label"><b>Production Weight Result</b></label>
                     </div>
-                    <div class="card mb-1 widget-content bg-success" style="padding:0.5rem">
+                    <div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
@@ -141,7 +141,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-success" style="padding:0.5rem">
+                    <div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
@@ -153,7 +153,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-success" style="padding:0.5rem">
+                    <div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
@@ -165,7 +165,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-success" style="padding:0.5rem">
+                    <div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
@@ -177,7 +177,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-success" style="padding:0.5rem">
+                    <div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
@@ -189,7 +189,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1 widget-content bg-success" style="padding:0.5rem">
+                    <div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
                                 <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
@@ -213,16 +213,17 @@
                     <input type="text" class="form-control" id="haha" readonly>
                 </div>
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mb-3">Save Weight</button>
+                    <button type="button" class="btn btn-primary mb-3" name="button_save" id="button_save">Save Weight</button>
                 </div>
             </form>
-            <table class="table table-bordered data-table">
+            <table class="table table-bordered data-table" style="font-size:11px">
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Weight</th>
+                        <th>Time</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th width="100px">Action</th>
+                        <th >Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -242,19 +243,30 @@
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
+            function get_datatables(){
+                var table = $('.data-table').DataTable({
+                    createdRow: function (row, data, dataIndex) {
+                        $(row).css('font-size', '11px'); // Change font size of rows
+                    },
+                    dom: 't',
+                    processing: true,
+                    serverSide: true,
+                    ajax: "{{ route('get_data_log') }}",
+                    columns: [
+                        {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                        {data: 'weight', name: 'weight' , orderable: false, searchable: false},
+                        {data: 'timetime', name: 'timetime', orderable: false, searchable: false},
+                        {data: 'fullname', name: 'fullname' , orderable: false, searchable: false},
+                        {data: 'action', name: 'action', orderable: false, searchable: false},
+                    ]
+                });
+            }
 
-            var table = $('.data-table').DataTable({
-                dom: 't',
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route('get_data_log') }}",
-                columns: [
-                    {data: 'weight', name: 'weight'},
-                    {data: 'time', name: 'time'},
-                    {data: 'fullname', name: 'fullname'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
-                ]
-            });
+            function destroy_tampil_data(){
+                $(".data-table").dataTable().fnDestroy();
+            }
+
+            get_datatables()
 
 
             $('#po_no').keyup(function (event) {
@@ -264,6 +276,79 @@
 
                 }
             });
+
+            // button untuk menyimpan data
+            $('#button_save').click(function(){
+                var po_no       = $('#po_no').val()
+                var model_name  = $('#model_name').val()
+                var article     = $('#article').val()
+                var po_qty      = $('#po_qty').val()
+                var destination = $('#destination').val()
+                var crd         = $('#crd').val()
+                var season      = $('#season').val()
+                var size        = $('#size').val()
+                var size_qty    = $('#size_qty').val()
+                var target_qty  = $('#target_qty').val()
+
+                var weight      = $('#haha').val()
+
+                if(
+                    po_no == null || 
+                    po_no == '' ||
+                    model_name == null ||
+                    model_name == '' ||
+                    article == null ||
+                    article == '' ||
+                    po_qty == null ||
+                    po_qty == '' ||
+                    destination == null ||
+                    destination == '' ||
+                    crd == null ||
+                    crd == '' ||
+                    season== null ||
+                    season== '' ||
+                    size == null ||
+                    size == '' ||
+                    size_qty == null ||
+                    size_qty == '' ||
+                    target_qty == null ||
+                    target_qty == '' ||
+                    weight == null ||
+                    weight == ''
+                ){
+                    alert('Please Fill All Form')
+                }else{
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        type:"POST",
+                        url:"{{ route('saving_data') }}",
+                        data    : {
+                            po_no:po_no,
+                            model_name:model_name,
+                            article:article,
+                            po_qty:po_qty,
+                            destination:destination,
+                            crd:crd,
+                            season:season,
+                            size:size,
+                            size_qty:size_qty,
+                            target_qty:target_qty,
+                            weight:weight,
+                        },
+                        success: function(hasil){
+                            alert(hasil.message)
+                            destroy_tampil_data()
+                            get_datatables()
+                            $('#haha').val('')
+                        }
+                    });
+                }
+            })
 
 
             function get_data_po(po_no){
