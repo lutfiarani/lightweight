@@ -10,7 +10,7 @@ class WeightModel extends Model
     //
     public static function get_data_po($po_no){
         $data = DB::selectResultSets("
-            EXEC GET_PO_INFORMATION @PO_NO = '$po_no'
+            EXEC GET_PO_INFORMATION @PO = '$po_no'
         ");
         return $data;
     }

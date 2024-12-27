@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
         //
         $dev = User::create([
             'name'  => 'dev',
+            'fullname'  => 'development',
             'email'   => 'dev@test.com',
             'password' => bcrypt(123456)
         ]);
@@ -23,6 +24,7 @@ class UserSeeder extends Seeder
 
         $outsole = User::create([
             'name'  => 'os',
+            'fullname'  => 'outsole',
             'email'   => 'outsole@test.com',
             'password' => bcrypt(123456)
         ]);
@@ -30,6 +32,7 @@ class UserSeeder extends Seeder
 
         $midsole = User::create([
             'name'  => 'ms',
+            'fullname'  => 'midsole',
             'email'   => 'midsole@test.com',
             'password' => bcrypt(123456)
         ]);
@@ -37,6 +40,7 @@ class UserSeeder extends Seeder
 
         $stockfit = User::create([
             'name'  => 'sf',
+            'fullname'  => 'stockfit',
             'email'   => 'stockfit@test.com',
             'password' => bcrypt(123456)
         ]);
@@ -44,6 +48,7 @@ class UserSeeder extends Seeder
 
         $upper = User::create([
             'name'  => 'up',
+            'fullname'  => 'upper',
             'email'   => 'upper@test.com',
             'password' => bcrypt(123456)
         ]);
@@ -51,9 +56,18 @@ class UserSeeder extends Seeder
 
         $assembly = User::create([
             'name'  => 'as',
+            'fullname'  => 'assembly',
             'email'   => 'assembly@test.com',
             'password' => bcrypt(123456)
         ]);
         $assembly->assignRole('prod');
+
+        $sockliner = User::create([
+            'name'  => 'sockliner',
+            'fullname'  => 'sockliner',
+            'email'   => 'sockliner@test.com',
+            'password' => bcrypt(123456)
+        ]);
+        $sockliner->assignRole('prod');
     }
 }

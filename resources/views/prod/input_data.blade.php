@@ -207,7 +207,7 @@
         <div class="col-xl-4"  style="padding:2px">
             <form class="row">
                 <div class="col-auto">
-                    <label  style="font-size:1rem; font-weight:800" >Assembly </label>
+                    <label  style="font-size:1rem; font-weight:800" >{{ Auth::user()->fullname }} </label>
                 </div>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="haha" readonly>
@@ -216,38 +216,16 @@
                     <button type="submit" class="btn btn-primary mb-3">Save Weight</button>
                 </div>
             </form>
-            <table class="mb-0 table table-striped">
+            <table class="table table-bordered data-table">
                 <thead>
-                <tr>
-                    <th>Seq</th>
-                    <th>Weight</th>
-                    <th>Time</th>
-                    <th>Name</th>
-                    <th>Delete</th>
-                </tr>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th width="100px">Action</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td>@mdo</td>
-                </tr>
                 </tbody>
             </table>
         </div>
@@ -260,8 +238,25 @@
 
 @section('js')
     <!-- <script src="http://maps.google.com/maps/api/js?sensor=true"></script> -->
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            var table = $('.data-table').DataTable({
+                dom: 't',
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('get_data_log') }}",
+                columns: [
+                    {data: 'weight', name: 'weight'},
+                    {data: 'time', name: 'time'},
+                    {data: 'fullname', name: 'fullname'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+
+
             $('#po_no').keyup(function (event) {
                 if (event.key === 'Enter' || event.keyCode === 13) {
                     const po_no = $(this).val();
@@ -305,7 +300,9 @@
                             $('#season').val(tampil_midas.season)
 
                             $('#size').val(tampil_midas.sample_size)
-                            $('#size_qty').val(tampil_size.jumlah_qty)
+                            $('#size_qty').val(tampil_size.SAMPLE_QTY)
+
+                            $('#target_qty').val(tampil_size.TARGET_QTY)
 
                             // perkalian
                             var min_max_perkalian = 5

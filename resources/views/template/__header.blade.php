@@ -19,5 +19,5 @@
     <script defer src="{{ asset('template/assets/scripts/fullcalendar.js')}}"></script>
     <script defer src="{{ asset('template/assets/scripts/maps.js')}}"></script>
     <script defer src="{{ asset('template/assets/scripts/chart_js.js')}}"></script>
-    
+    <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 </head>
