@@ -66,16 +66,15 @@ Route::get('/', function () {
 
 
 
-
-
-
-
 // Group rute yang dilindungi dengan middleware 'role:admin'
 Route::middleware(['role:prod'])->group(function () {
     Route::get('/prod/input_data',[WeightController::class, 'input_data_production'])->name('input_data_production');
     Route::get('/prod/get_po/{po_no}',[WeightController::class, 'get_data_po'])->name('get_data_po');
     Route::get('/prod/get_data_log',[WeightController::class, 'get_data_log'])->name('get_data_log');
     Route::post('/prod/saving_data_weight',[WeightController::class, 'saving_data'])->name('saving_data');
+    Route::post('/prod/view_data_result',[WeightController::class, 'view_data_result'])->name('view_data_result');
+    Route::get('/prod/po',[WeightController::class, 'search_po'])->name('search_po');
+    Route::post('/prod/delete_data_log',[WeightController::class, 'delete_data_log'])->name('delete_data_log');
     
 });
 

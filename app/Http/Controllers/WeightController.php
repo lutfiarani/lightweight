@@ -52,7 +52,7 @@ class WeightController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
        
-                            $btn = '<a href="javascript:void(0)" class="delete btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>';
+                            $btn = '<button class="delete_log btn btn-danger btn-sm" data-id="'.$row->id_log.'"><i class="fa-solid fa-trash-can"></i></button>';
       
                             return $btn;
                     })
@@ -114,6 +114,58 @@ class WeightController extends Controller
 
         
     }
+
+
+    function view_data_result(Request $request){
+        $po_no = $request->input('po_no');
+        $data = WeightModel::view_data_result($po_no);
+
+        return response()->json($data);
+    }
+
+
+    function search_po(Request $request){
+        $query = $request->get('term', ''); // Dapatkan input pencarian dari Select2
+
+        $data = WeightModel::search_po($query);
+        
+
+        // dd($data);
+
+        // Format data untuk Select2
+        $formattedData = $data->map(function ($item) {
+            return [
+                'id' => $item->PO_NO,   // ID item
+                'text' => $item->PO_NO // Teks untuk ditampilkan
+            ];
+        });
+
+        return response()->json($formattedData);
+    }
+
+
+    function delete_data_log(Request $request){
+        $id = $request->input('id_log');
+        $user = Auth::user()->fullname;
+        $current_date = now();
+
+        $delete = WeightModel::delete_data_log($id, $user, $current_date);
+
+        if($delete){
+            $status = true;
+            $message = 'Data Berhasil dihapus';
+        }else{
+            $status = false;
+            $message = 'Gagal Menghapus data';
+        }
+
+        return response()->json(array(
+            'status'    => $status,
+            'message'   => $message
+        ));
+
+
+    }   
 
 
 }

@@ -1,6 +1,29 @@
 @extends('template.__body')
 
 @section('content')
+<style>
+    /* Gaya untuk dropdown hasil */
+    #suggestions {
+      border: 1px solid #ccc;
+      max-height: 150px;
+      overflow-y: auto;
+      position: absolute;
+      background: #fff;
+      z-index: 1000;
+      display: none;
+      width: 300px;
+    }
+
+    #suggestions div {
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    #suggestions div:hover {
+      background: #f0f0f0;
+    }
+  </style>
+
 <div class="app-main__inner">
     <!-- <div class="app-page-title">
         <div class="page-title-wrapper">
@@ -20,7 +43,11 @@
     <div class="row" style="margin:2px; background-color:white; border-radius:0.375rem; padding-top :10px; padding-left:10px; padding-right:10px" >
         <div class="col-xl-2" style="padding:0px; ">
             <!-- <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Model<h5 class="card-title">VL COURT 3.0</h5></div> -->
-            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">PO No<h5 class="card-title"><input type="text" class="form-control " id="po_no" ></h5></div>
+            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">PO No
+                <select id="po_no" style="width:100%">
+
+                </select>
+            </div>
             <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Model<h5 class="card-title" ><input type="text" class="form-control form-control-xs" id="model_name" readonly> </h5></div>
             <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Article<input type="text" class="form-control h-25" id="article" readonly></div>
             <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">PO Qty<h5 class="card-title"><input type="text" class="form-control form-control-sm" id="po_qty" readonly></h5></div>
@@ -48,78 +75,9 @@
                     <div class="position-relative ">
                         <label for="exampleEmail11" class="form-label"><b>Basic Define</b></label>
                     </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading"><h5>MIDSOLE</h5></div>
-                                <div class="widget-heading"><i class="fa-light fa-boot fa-3x"></i></div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span id="min_max_midsole">0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span id="standard_midsole">0.00g</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading"><h5>OUTSOLE</h5></div>
-                                <div class="widget-heading"><i class="fa-light fa-boot fa-3x"></i></div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span id="min_max_outsole">0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span id="standard_outsole">0.00g</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading"><h5>STOCKFIT</h5></div>
-                                <div class="widget-heading"><i class="fa-light fa-boot fa-3x"></i></div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span id="min_max_stockfit">0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span id="standard_stockfit">0.00g</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading"><h5>UPPER</h5></div>
-                                <div class="widget-heading"><i class="fa-light fa-boot fa-3x"></i></div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span id="min_max_upper">0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span id="standard_upper">0.00g</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading"><h5>ASSEMBLY</h5></div>
-                                <div class="widget-heading"><i class="fa-light fa-boot fa-3x"></i></div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span id="min_max_assembly">0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span id="standard_assembly">0.00g</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading"><h5>SOCKLINER</h5></div>
-                                <div class="widget-heading"><i class="fa-light fa-boot fa-3x"></i></div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span id="min_max_sockliner">0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span id="standard_sockliner">0.00g</span></div>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    <div id="midas_data"></div>
+                    
                 </div>
                 <div class="col-md-6" style="padding:2px">
                     <div class="position-relative mb-3">
@@ -129,78 +87,7 @@
                     <div class="position-relative ">
                         <label for="exampleEmail11" class="form-label"><b>Production Weight Result</b></label>
                     </div>
-                    <div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
-                                <div class="widget-numbers text-white" style="float:left"><span>5</span></div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span>0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span>0.00g</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
-                                <div class="widget-numbers text-white" style="float:left"><span>5</span></div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span>0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span>0.00g</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
-                                <div class="widget-numbers text-white" style="float:left"><span>5</span></div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span>0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span>0.00g</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
-                                <div class="widget-numbers text-white" style="float:left"><span>5</span></div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span>0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span>0.00g</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
-                                <div class="widget-numbers text-white" style="float:left"><span>5</span></div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span>0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span>0.00g</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading text-white"><h5>Target : 37pcs</h5></div>
-                                <div class="widget-numbers text-white" style="float:left"><span>5</span></div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white" style="font-size:1.3rem"><span>0.00 - 0.00</span></div>
-                                <div class="widget-numbers text-white" style="float:right"><span>0.00g</span></div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="tampil_data_result"></div>
                 </div>
             </div>
         </div>
@@ -220,6 +107,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Po No</th>
                         <th>Weight</th>
                         <th>Time</th>
                         <th>Name</th>
@@ -239,10 +127,81 @@
 
 @section('js')
     <!-- <script src="http://maps.google.com/maps/api/js?sensor=true"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script defer src="{{ asset('template/assets/scripts/main.js')}}"></script>
+    <script defer src="{{ asset('template/assets/scripts/demo.js')}}"></script>
+    <script defer src="{{ asset('template/assets/scripts/toastr.js')}}"></script>
+    <script defer src="{{ asset('template/assets/scripts/scrollbar.js')}}"></script>
+    <script defer src="{{ asset('template/assets/scripts/fullcalendar.js')}}"></script>
+    <script defer src="{{ asset('template/assets/scripts/maps.js')}}"></script>
+    <script defer src="{{ asset('template/assets/scripts/chart_js.js')}}"></script>
+
+    <!-- <script defer src="{{ asset('template/assets/scripts/toastr.js')}}"></script> -->
+
+    
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+    
+    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
     <script>
         $(document).ready(function() {
+
+
+            // $('#mySelect').select2();
+            $('#po_no').select2({
+                placeholder: 'Search PO...',
+                minimumInputLength: 4, // Mulai pencarian setelah mengetik 1 karakter
+                ajax: {
+                    url: "{{ route('search_po') }}", // Ganti dengan URL endpoint API Anda
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                        term: params.term // Kirim input pengguna ke server
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                        results: data // Data yang diterima dari server
+                        };
+                    },
+                    cache: true
+                }
+                
+            });
+
+
+            $(document).on("click",".delete_log",function() {
+                if (confirm("Are you sure?")) {
+                    var id_log = $(this).attr('data-id')
+                    delete_log(id_log)
+                }
+                return false;
+                
+            })
+
+            function delete_log(id_log){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type:"post",
+                    url:"{{ url('/prod/delete_data_log') }}",
+                    data:{id_log:id_log},
+                    success: function(hasil){
+                        alert(hasil.message)
+                        destroy_tampil_data()
+                        get_datatables()
+                    }
+                })
+            }
+
+
             function get_datatables(){
                 var table = $('.data-table').DataTable({
                     createdRow: function (row, data, dataIndex) {
@@ -254,6 +213,7 @@
                     ajax: "{{ route('get_data_log') }}",
                     columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                        {data: 'po_no', name: 'po_no' , orderable: false, searchable: false},
                         {data: 'weight', name: 'weight' , orderable: false, searchable: false},
                         {data: 'timetime', name: 'timetime', orderable: false, searchable: false},
                         {data: 'fullname', name: 'fullname' , orderable: false, searchable: false},
@@ -266,15 +226,74 @@
                 $(".data-table").dataTable().fnDestroy();
             }
 
+            // load awal
+
+            var po_no = $('#po_no').val()
             get_datatables()
+            get_data_result(po_no)
 
 
-            $('#po_no').keyup(function (event) {
-                if (event.key === 'Enter' || event.keyCode === 13) {
+            function get_data_result(po_no){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type:"post",
+                    url:"{{ url('/prod/view_data_result') }}",
+                    data:{po_no:po_no},
+                    success: function(hasil){
+                        console.log(hasil)
+                        var target_qty = $('#target_qty').val()
+
+                        var midas_data = ''
+                        for (let index = 0; index < hasil.length; index++) {
+                            midas_data += '<div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">'
+                            midas_data += '    <div class="widget-content-wrapper text-white">'
+                            midas_data += '        <div class="widget-content-left">'
+                            midas_data += '            <div class="widget-heading text-white"><h6>'+hasil[index].full_process_name+'</h6></div>'
+                            midas_data += '            <div class="widget-numbers text-white" style="float:left" ><i class="fa-light fa-boot fa-1x"></i></div>'
+                            midas_data += '        </div>'
+                            midas_data += '        <div class="widget-content-right">'
+                            midas_data += '            <div class="widget-numbers text-white" style="font-size:1.1rem" ><span >'+(hasil[index].min_standard == ".00" ? "0.00" : hasil[index].min_standard)+' - '+ (hasil[index].max_standard == ".00" ? "0.00" :hasil[index].max_standard)+'</span></div>'
+                            midas_data += '            <div class="widget-numbers text-white" style="float:right" ><span >'+(hasil[index].standard == ".00" ? "0.00" : hasil[index].standard)+'g</span></div>'
+                            midas_data += '        </div>'
+                            midas_data += '    </div>'
+                            midas_data += '</div>'
+                        }
+
+                        var tampil_data = ''
+                        for (let index = 0; index < hasil.length; index++) {
+                            tampil_data += '<div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">'
+                            tampil_data += '    <div class="widget-content-wrapper text-white">'
+                            tampil_data += '        <div class="widget-content-left">'
+                            tampil_data += '            <div class="widget-heading text-white"><h6>Target : <span class="target_qty"></span>pcs</h6></div>'
+                            tampil_data += '            <div class="widget-numbers text-white" style="float:left" ><span >'+hasil[index].jumlah_qty+'</span></div>'
+                            tampil_data += '        </div>'
+                            tampil_data += '        <div class="widget-content-right">'
+                            tampil_data += '            <div class="widget-numbers text-white" style="font-size:1.1rem" ><span >'+(hasil[index].min_rata_rata == ".00" ? "0.00" : hasil[index].min_rata_rata)+' - '+ (hasil[index].max_rata_rata == ".00" ? "0.00" :hasil[index].max_rata_rata)+'</span></div>'
+                            tampil_data += '            <div class="widget-numbers text-white" style="float:right" ><span >'+(hasil[index].rata_rata == ".00" ? "0.00" : hasil[index].rata_rata)+'g</span></div>'
+                            tampil_data += '        </div>'
+                            tampil_data += '    </div>'
+                            tampil_data += '</div>'
+                        }
+                        $('#midas_data').html(midas_data)
+                        $('#tampil_data_result').html(tampil_data)
+                    }
+                });
+            }
+
+
+            
+
+            $('#po_no').change(function (event) {
+                // if (event.key === 'Enter' || event.keyCode === 13) {
                     const po_no = $(this).val();
                     get_data_po(po_no)
-
-                }
+                    get_data_result(po_no)
+                    
+                // }
             });
 
             // button untuk menyimpan data
@@ -365,6 +384,15 @@
                         // if(hasil.midas_information)
                         if(hasil.midas_information.length == 0){
                             alert('Standard information not found, please contact Development')
+                            $('#model_name').val('')
+                            $('#article').val('')
+                            $('#po_qty').val('')
+                            $('#destination').val('')
+                            $('#crd').val('')
+                            $('#season').val('')
+                            $('#size').val('')
+                            $('#size_qty').val('')
+                            $('#target_qty').val('')
                         }else if(hasil.po_information.length == 0){
                             alert('PO information not found')
                         }else if(hasil.size_information.length == 0){
@@ -389,53 +417,7 @@
 
                             $('#target_qty').val(tampil_size.TARGET_QTY)
 
-                            // perkalian
-                            var min_max_perkalian = 5
-
-                            var min_midsole = parseFloat(tampil_midas.MS) - parseFloat(tampil_midas.MS * min_max_perkalian / 100)
-                            var max_midsole = parseFloat(tampil_midas.MS) + parseFloat(tampil_midas.MS * min_max_perkalian / 100)
-                            var min_max_midsole = min_midsole.toFixed(2) +' - '+max_midsole.toFixed(2)
-
-                            var min_outsole = parseFloat(tampil_midas.OS) - parseFloat(tampil_midas.OS * min_max_perkalian / 100)
-                            var max_outsole = parseFloat(tampil_midas.OS) + parseFloat(tampil_midas.OS * min_max_perkalian / 100)
-                            var min_max_outsole = min_outsole.toFixed(2) +' - '+max_outsole.toFixed(2)
-
-                            var min_stockfit = parseFloat(tampil_midas.SF) - parseFloat(tampil_midas.SF * min_max_perkalian / 100)
-                            var max_stockfit = parseFloat(tampil_midas.SF) + parseFloat(tampil_midas.SF * min_max_perkalian / 100)
-                            var min_max_stockfit = min_stockfit.toFixed(2) +' - '+max_stockfit.toFixed(2)
-                            
-                            var min_upper = parseFloat(tampil_midas.UP) - parseFloat(tampil_midas.UP * min_max_perkalian / 100)
-                            var max_upper = parseFloat(tampil_midas.UP) + parseFloat(tampil_midas.UP * min_max_perkalian / 100)
-                            var min_max_upper = min_upper.toFixed(2) +' - '+max_upper.toFixed(2)
-
-                            var min_assembly = parseFloat(tampil_midas.AS) - parseFloat(tampil_midas.AS * min_max_perkalian / 100)
-                            var max_assembly = parseFloat(tampil_midas.AS) + parseFloat(tampil_midas.AS * min_max_perkalian / 100)
-                            var min_max_assembly = min_assembly.toFixed(2) +' - '+max_assembly.toFixed(2)
-
-                            var min_sockliner = parseFloat(tampil_midas.sockliner) - parseFloat(tampil_midas.sockliner * min_max_perkalian / 100)
-                            var max_sockliner = parseFloat(tampil_midas.sockliner) + parseFloat(tampil_midas.sockliner * min_max_perkalian / 100)
-                            var min_max_sockliner = min_sockliner.toFixed(2) +' - '+max_sockliner.toFixed(2)
-
-
-                            $('#standard_midsole').text(tampil_midas.MS)
-                            $('#min_max_midsole').text(min_max_midsole)
-
-                            $('#standard_outsole').text(tampil_midas.OS)
-                            $('#min_max_outsole').text(min_max_outsole)
-
-                            $('#standard_stockfit').text(tampil_midas.SF)
-                            $('#min_max_stockfit').text(min_max_stockfit)
-
-                            $('#standard_upper').text(tampil_midas.UP)
-                            $('#min_max_upper').text(min_max_upper)
-
-                            $('#standard_assembly').text(tampil_midas.AS)
-                            $('#min_max_assembly').text(min_max_assembly)
-
-                            $('#standard_sockliner').text(tampil_midas.sockliner)
-                            $('#min_max_sockliner').text(min_max_sockliner)
-
-                            
+                            $('.target_qty').text(tampil_size.TARGET_QTY);
                         }
                     }
                 });
