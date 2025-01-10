@@ -29,6 +29,21 @@ class WeightController extends Controller
         return view('prod.input_data', $data);
     }
 
+
+    function input_data_production_outsole(){
+        $judul = 'Production';
+        $subJudul = 'Input Data';
+        $auth = Auth::user()->id;
+
+        $data = array(
+            'judul'         => $judul,
+            'subJudul'      => $subJudul,
+        );
+
+        return view('prod.input_data_outsole', $data);
+    }
+
+
     function get_data_po($po_no){
         $data = WeightModel::get_data_po($po_no);
 

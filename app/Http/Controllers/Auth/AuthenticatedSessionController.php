@@ -28,7 +28,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('input_data_production', absolute: false));
+        // dd(Auth::user()->fullname);
+        if(Auth::user()->fullname == 'outsole' || Auth::user()->fullname == 'midsole' || Auth::user()->fullname == 'stockfit'){
+            return redirect()->intended(route('input_data_production_outsole', absolute: false));
+        }else{
+            return redirect()->intended(route('input_data_production', absolute: false));
+        }
+
+        
     }
 
     /**

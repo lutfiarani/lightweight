@@ -41,8 +41,7 @@
     </div> -->
     
     <div class="row" style="margin:2px; background-color:white; border-radius:0.375rem; padding-top :10px; padding-left:10px; padding-right:10px" >
-        <div class="col-xl-2" style="padding:0px; ">
-            <!-- <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Model<h5 class="card-title">VL COURT 3.0</h5></div> -->
+        <!-- <div class="col-xl-2" style="padding:0px; ">
             <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">PO No
                 <select id="po_no" style="width:100%">
 
@@ -54,7 +53,7 @@
             <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Destination<h5 class="card-title"><input type="text" class="form-control form-control-sm" id="destination" readonly></h5></div>
             <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">CRD<h5 class="card-title"><input type="text" class="form-control form-control-sm" id="crd" readonly></h5></div>
             <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Season<h5 class="card-title"><input type="text" class="form-control form-control-sm" id="season" readonly></h5></div>
-        </div>
+        </div> -->
         <div class="col-xl-6">
             <div class="row" style="margin:0px">
                 <div class="col-md-6" style="padding:2px">
@@ -80,19 +79,9 @@
                     
                 </div>
                 <div class="col-md-6" style="padding:2px">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="position-relative mb-3">
-                                <label for="exampleEmail11" class="form-label"><b>Target Quantity </b></label>
-                                <input name="target_qty"  id="target_qty" placeholder="Target Qty" type="number" class="form-control" readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="position-relative mb-3">
-                                <label for="exampleEmail11" class="form-label"><b>Balance</b></label>
-                                <input name="balance" id="balance" id="exampleEmail11" placeholder="Balance" type="text" class="form-control" readonly>
-                            </div>
-                        </div>
+                    <div class="position-relative mb-3">
+                        <label for="exampleEmail11" class="form-label"><b>Target Quantity </b></label>
+                        <input name="target_qty"  id="target_qty" placeholder="Target Qty" type="number" class="form-control" readonly>
                     </div>
                     <div class="position-relative ">
                         <label for="exampleEmail11" class="form-label"><b>Production Weight Result</b></label>
@@ -101,7 +90,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-4"  style="padding:2px">
+        <div class="col-xl-6"  style="padding:2px">
             <form class="row">
                 <div class="col-auto">
                     <label  style="font-size:1rem; font-weight:800" >{{ Auth::user()->fullname }} </label>

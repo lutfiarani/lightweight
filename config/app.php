@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'lightweight'),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,8 +51,9 @@ return [
     | the application so that it's available within Artisan commands.
     |
     */
-
     'url' => env('APP_URL', 'http://localhost'),
+    // 'url' => env('APP_URL', 'http://10.10.40.40:8003/lightweight'),
+    // 'asset_url' => env('ASSET_URL', 'http://10.10.40.40:8003/lightweight/public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +66,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    // 'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
