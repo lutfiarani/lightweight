@@ -89,6 +89,7 @@ class WeightController extends Controller
         $size_qty       = $request->input('size_qty');
         $target_qty     = $request->input('target_qty');
         $weight         = $request->input('weight');
+        $posisi         = $request->input('posisi');
         $type           = Auth::user()->name;
         $time           = date('Y-m-d H:i:s');
         $fullname       = Auth::user()->fullname;
@@ -117,14 +118,21 @@ class WeightController extends Controller
         if($save_data){
             $status = true;
             $message = 'Success to save data';
+            if($posisi == 'R'){
+                $next_posisi = 'L';
+            }else{
+                $next_posisi = 'R';
+            }
         }else{
             $status = false;
             $message = 'Failed to save data';
+            $next_posisi = $posisi;
         }
 
         return response()->json(array(
-            'status'    => $status,
-            'message'   => $message
+            'status'            => $status,
+            'message'           => $message,
+            'next_posisi'       => $next_posisi
         ));
 
         

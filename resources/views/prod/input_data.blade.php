@@ -25,20 +25,11 @@
   </style>
 
 <div class="app-main__inner">
-    <!-- <div class="app-page-title">
+    <div class="app-page-title" style="margin-bottom: 0.5rem">
         <div class="page-title-wrapper">
-            <div class="page-title-heading">
-                <div class="page-title-icon">
-                    <i class="metismenu-icon pe-7s-eyedropper">
-                    </i>
-                </div>
-                <div>{{ $judul }}
-                    <div class="page-title-subheading">{{ $subJudul }}
-                    </div>
-                </div>
-            </div>    
+            <label  style="font-size:1rem; font-weight:800" >{{ Auth::user()->fullname }} </label>
         </div>
-    </div> -->
+    </div>
     
     <div class="row" style="margin:2px; background-color:white; border-radius:0.375rem; padding-top :10px; padding-left:10px; padding-right:10px" >
         <div class="col-xl-2" style="padding:0px; ">
@@ -103,8 +94,11 @@
         </div>
         <div class="col-xl-4"  style="padding:2px">
             <form class="row">
-                <div class="col-auto">
-                    <label  style="font-size:1rem; font-weight:800" >{{ Auth::user()->fullname }} </label>
+                <div class="col-sm-3">
+                    <select class="form-control" name="posisi" id="posisi">
+                        <option value="L">Left</option>
+                        <option value="R">Right</option>
+                    </select>
                 </div>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="haha" readonly>
@@ -241,6 +235,7 @@
             var po_no = $('#po_no').val()
             get_datatables()
             get_data_result(po_no)
+            cek_posisi()
 
 
             function get_data_result(po_no){
@@ -320,6 +315,7 @@
                 var target_qty  = $('#target_qty').val()
 
                 var weight      = $('#haha').val()
+                var posisi      = $('#posisi').val()
 
                 if(
                     po_no == null || 
@@ -368,16 +364,31 @@
                             size_qty:size_qty,
                             target_qty:target_qty,
                             weight:weight,
+                            posisi:posisi
                         },
                         success: function(hasil){
                             alert(hasil.message)
                             destroy_tampil_data()
                             get_datatables()
                             $('#haha').val('')
+                            localStorage.setItem('posisi', hasil.next_posisi);
+                            cek_posisi()
                         }
                     });
                 }
             })
+
+
+            function cek_posisi(){
+                var posisi = localStorage.getItem('posisi');
+                if(posisi == null || posisi == ''){
+                    var posisi_baru = 'L';
+                }else{
+                    var posisi_baru = posisi;
+                }
+                // console.log(posisi)
+                $('#posisi').val(posisi_baru)
+            }
 
 
             function get_data_po(po_no){
