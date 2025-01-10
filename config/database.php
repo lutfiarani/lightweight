@@ -112,6 +112,21 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'sqlsrv20' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DB_URL'),
+            'host' => env('DB_HOST_2', '10.10.100.20'),
+            'port' => env('DB_PORT_2', '1433'),
+            'database' => env('DB_DATABASE_2', 'MEShs'),
+            'username' => env('DB_USERNAME_2', 'sa'),
+            'password' => env('DB_PASSWORD_2', 'hwaseungmes@02'),
+            'charset' => env('DB_CHARSET', 'utf8'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            // 'encrypt' => env('DB_ENCRYPT', 'yes'),
+            // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
+        ],
+
     ],
 
     /*

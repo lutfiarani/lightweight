@@ -1,8 +1,5 @@
 @include('template.__header')
 
-
-
-
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         @include('template.__top_menu')
@@ -21,3 +18,8 @@
     </div>      
 
 @include('template.__footer')
+<script>
+    $(document).ready(function() {
+        $('.form-select').select2();
+    })
+</script>
