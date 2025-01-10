@@ -27,7 +27,7 @@
 <div class="app-main__inner">
     <div class="app-page-title" style="margin-bottom: 0.5rem">
         <div class="page-title-wrapper">
-            <label  style="font-size:1rem; font-weight:800" >{{ Auth::user()->fullname }} </label>
+            <label  style="font-size:1rem; font-weight:800" >{{ mb_convert_case(Auth::user()->fullname, MB_CASE_TITLE, "UTF-8"); }} </label>
         </div>
     </div>
     
@@ -94,17 +94,25 @@
         </div>
         <div class="col-xl-4"  style="padding:2px">
             <form class="row">
-                <div class="col-sm-3">
-                    <select class="form-control" name="posisi" id="posisi">
-                        <option value="L">Left</option>
-                        <option value="R">Right</option>
-                    </select>
+                <div class="col-sm-4">
+                    <div class="position-relative mb-3">
+                        <label for="exampleEmail11" class="form-label"><b>Position </b></label>
+                        <select class="form-control" name="posisi" id="posisi">
+                            <option value="L">Left</option>
+                            <option value="R">Right</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" id="haha" readonly>
+                <div class="col-sm-4">
+                    <div class="position-relative mb-3">
+                        <label for="exampleEmail11" class="form-label"><b>Weight </b></label>
+                        <input type="text" class="form-control" id="haha" readonly>
+                    </div>
                 </div>
-                <div class="col-auto">
-                    <button type="button" class="btn btn-primary mb-3" name="button_save" id="button_save">Save Weight</button>
+                <div class="col-sm-4">
+                    <div class="position-relative mb-3">
+                        <button type="button" class="btn btn-primary mb-3" style="margin-top:1.5rem" name="button_save" id="button_save">Save Data</button>
+                    </div>
                 </div>
             </form>
             <table class="table table-bordered data-table" style="font-size:11px">
