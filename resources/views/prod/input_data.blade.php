@@ -25,7 +25,7 @@
   </style>
 
 <div class="app-main__inner">
-    <div class="app-page-title" style="margin-bottom: 0.5rem">
+    <div class="app-page-title" style="margin-bottom: 0.5rem; padding-left:1.5rem; padding-top:0.5rem; padding-bottom:0.5rem">
         <div class="page-title-wrapper">
             <label  style="font-size:1rem; font-weight:800" >{{ mb_convert_case(Auth::user()->fullname, MB_CASE_TITLE, "UTF-8"); }} </label>
         </div>
@@ -34,11 +34,10 @@
     <div class="row" style="margin:2px; background-color:white; border-radius:0.375rem; padding-top :10px; padding-left:10px; padding-right:10px" >
         <div class="col-xl-2" style="padding:0px; ">
             <!-- <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Model<h5 class="card-title">VL COURT 3.0</h5></div> -->
-            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">PO No
-                <select id="po_no" style="width:100%">
-
-                </select>
+            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Lot ID
+                <input type="text" class="form-control form-control-xs" id="lot_id" >
             </div>
+            <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">PO No<h5 class="card-title" ><input type="text" class="form-control form-control-xs" id="po_no" readonly> </h5></div>
             <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Model<h5 class="card-title" ><input type="text" class="form-control form-control-xs" id="model_name" readonly> </h5></div>
             <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">Article<input type="text" class="form-control h-25" id="article" readonly></div>
             <div class="card-shadow-primary border mb-1 card card-body border-primary" style="padding:10px">PO Qty<h5 class="card-title"><input type="text" class="form-control form-control-sm" id="po_qty" readonly></h5></div>
@@ -121,6 +120,7 @@
                         <th>No</th>
                         <th>Po No</th>
                         <th>Weight</th>
+                        <th>L/R</th>
                         <th>Time</th>
                         <th>Name</th>
                         <th >Action</th>
@@ -163,27 +163,31 @@
 
 
             // $('#mySelect').select2();
-            $('#po_no').select2({
-                placeholder: 'Search PO...',
-                minimumInputLength: 4, // Mulai pencarian setelah mengetik 1 karakter
-                ajax: {
-                    url: "{{ route('search_po') }}", // Ganti dengan URL endpoint API Anda
-                    dataType: 'json',
-                    delay: 250,
-                    data: function (params) {
-                        return {
-                        term: params.term // Kirim input pengguna ke server
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                        results: data // Data yang diterima dari server
-                        };
-                    },
-                    cache: true
-                }
+            // $('#po_no').select2({
+            //     placeholder: 'Search PO...',
+            //     minimumInputLength: 4, // Mulai pencarian setelah mengetik 1 karakter
+            //     ajax: {
+            //         url: "{{ route('search_po') }}", // Ganti dengan URL endpoint API Anda
+            //         dataType: 'json',
+            //         delay: 250,
+            //         data: function (params) {
+            //             return {
+            //             term: params.term // Kirim input pengguna ke server
+            //             };
+            //         },
+            //         processResults: function (data) {
+            //             return {
+            //             results: data // Data yang diterima dari server
+            //             };
+            //         },
+            //         cache: true
+            //     }
                 
-            });
+            // });
+
+            function fokus_scan(){
+                $('#lot_id').focus();
+            }
 
 
             $(document).on("click",".delete_log",function() {
@@ -227,6 +231,7 @@
                         {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                         {data: 'po_no', name: 'po_no' , orderable: false, searchable: false},
                         {data: 'weight', name: 'weight' , orderable: false, searchable: false},
+                        {data: 'position', name: 'position' , orderable: false, searchable: false},
                         {data: 'timetime', name: 'timetime', orderable: false, searchable: false},
                         {data: 'fullname', name: 'fullname' , orderable: false, searchable: false},
                         {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -244,6 +249,7 @@
             get_datatables()
             get_data_result(po_no)
             cek_posisi()
+            fokus_scan()
 
 
             function get_data_result(po_no){
@@ -265,11 +271,11 @@
                             midas_data += '<div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">'
                             midas_data += '    <div class="widget-content-wrapper text-white">'
                             midas_data += '        <div class="widget-content-left">'
-                            midas_data += '            <div class="widget-heading text-white"><h6>'+hasil[index].full_process_name+'</h6></div>'
+                            midas_data += '            <div class="widget-heading text-white"><h5>'+hasil[index].full_process_name+'</h5></div>'
                             midas_data += '            <div class="widget-numbers text-white" style="float:left" ><i class="fa-light fa-boot fa-1x"></i></div>'
                             midas_data += '        </div>'
                             midas_data += '        <div class="widget-content-right">'
-                            midas_data += '            <div class="widget-numbers text-white" style="font-size:1.1rem" ><span >'+(hasil[index].min_standard == ".00" ? "0.00" : hasil[index].min_standard)+' - '+ (hasil[index].max_standard == ".00" ? "0.00" :hasil[index].max_standard)+'</span></div>'
+                            midas_data += '            <div class="widget-numbers text-white" style="font-size:1.2rem" ><span >'+(hasil[index].min_standard == ".00" ? "0.00" : hasil[index].min_standard)+' - '+ (hasil[index].max_standard == ".00" ? "0.00" :hasil[index].max_standard)+'</span></div>'
                             midas_data += '            <div class="widget-numbers text-white" style="float:right" ><span >'+(hasil[index].standard == ".00" ? "0.00" : hasil[index].standard)+'g</span></div>'
                             midas_data += '        </div>'
                             midas_data += '    </div>'
@@ -281,11 +287,11 @@
                             tampil_data += '<div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">'
                             tampil_data += '    <div class="widget-content-wrapper text-white">'
                             tampil_data += '        <div class="widget-content-left">'
-                            tampil_data += '            <div class="widget-heading text-white"><h6>Target : <span class="target_qty"></span>pcs</h6></div>'
+                            tampil_data += '            <div class="widget-heading text-white"><h5>Target : <span class="target_qty"></span>pcs</h5></div>'
                             tampil_data += '            <div class="widget-numbers text-white" style="float:left" ><span >'+hasil[index].jumlah_qty+'</span></div>'
                             tampil_data += '        </div>'
                             tampil_data += '        <div class="widget-content-right">'
-                            tampil_data += '            <div class="widget-numbers text-white" style="font-size:1.1rem" ><span >'+(hasil[index].min_rata_rata == ".00" ? "0.00" : hasil[index].min_rata_rata)+' - '+ (hasil[index].max_rata_rata == ".00" ? "0.00" :hasil[index].max_rata_rata)+'</span></div>'
+                            tampil_data += '            <div class="widget-numbers text-white" style="font-size:1.2rem" ><span >'+(hasil[index].min_rata_rata == ".00" ? "0.00" : hasil[index].min_rata_rata)+' - '+ (hasil[index].max_rata_rata == ".00" ? "0.00" :hasil[index].max_rata_rata)+'</span></div>'
                             tampil_data += '            <div class="widget-numbers text-white" style="float:right" ><span >'+(hasil[index].rata_rata == ".00" ? "0.00" : hasil[index].rata_rata)+'g</span></div>'
                             tampil_data += '        </div>'
                             tampil_data += '    </div>'
@@ -300,13 +306,14 @@
 
             
 
-            $('#po_no').change(function (event) {
-                // if (event.key === 'Enter' || event.keyCode === 13) {
-                    const po_no = $(this).val();
-                    get_data_po(po_no)
-                    get_data_result(po_no)
-                    
-                // }
+            $('#lot_id').on('keydown', function (event) {
+                if (event.key === 'Enter' || event.keyCode === 13) {
+                    const lotid = $(this).val();
+                    get_data_po(lotid)
+                    get_data_result(lotid)
+                    $('#lot_id').val('')
+                    fokus_scan()
+                }
             });
 
             // button untuk menyimpan data
@@ -381,6 +388,7 @@
                             $('#haha').val('')
                             localStorage.setItem('posisi', hasil.next_posisi);
                             cek_posisi()
+                            fokus_scan()
                         }
                     });
                 }
@@ -413,6 +421,7 @@
                         // if(hasil.midas_information)
                         if(hasil.midas_information.length == 0){
                             alert('Standard information not found, please contact Development')
+                            $('#po_no').val('')
                             $('#model_name').val('')
                             $('#article').val('')
                             $('#po_qty').val('')
@@ -432,6 +441,7 @@
                             var tampil_size = hasil.size_information[0]
 
                             // console.log(tampil_po)
+                            $('#po_no').val(tampil_po.PO_NO)
                             $('#model_name').val(tampil_po.MODEL_NAME)
                             $('#article').val(tampil_po.ART_NO)
                             $('#po_qty').val(tampil_po.TOTAL_QTY)

@@ -111,6 +111,7 @@ class WeightController extends Controller
             'time'      => $time, 
             'fullname'  => $fullname, 
             'use_data'  => $use_data, 
+            'position'  => $posisi,
             'created_at'    => now(),
             'updated_at'    => now()
         ]);

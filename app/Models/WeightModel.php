@@ -8,16 +8,16 @@ use Illuminate\Support\Facades\DB;
 class WeightModel extends Model
 {
     //
-    public static function get_data_po($po_no){
+    public static function get_data_po($lotid){
         $data = DB::selectResultSets("
-            EXEC GET_PO_INFORMATION @PO = '$po_no'
+            EXEC GET_PO_INFORMATION_V2 @LOTID = '$lotid'
         ");
         return $data;
     }
 
-    public static function view_data_result($po_no){
+    public static function view_data_result($lotid){
         $data = DB::select("
-            EXEC VIEW_PRODUCTION_RESULT @PO = '$po_no'
+            EXEC VIEW_PRODUCTION_RESULT_V2 @LOTID = '$lotid'
         ");
         return $data;
     }

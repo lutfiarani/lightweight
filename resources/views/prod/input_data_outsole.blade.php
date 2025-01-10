@@ -108,6 +108,7 @@
                         <th>No</th>
                         <th>Po No</th>
                         <th>Weight</th>
+                        <th>Position</th>
                         <th>Time</th>
                         <th>Name</th>
                         <th >Action</th>
@@ -214,6 +215,7 @@
                         {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                         {data: 'po_no', name: 'po_no' , orderable: false, searchable: false},
                         {data: 'weight', name: 'weight' , orderable: false, searchable: false},
+                        {data: 'position', name: 'position', orderable: false, searchable: false},
                         {data: 'timetime', name: 'timetime', orderable: false, searchable: false},
                         {data: 'fullname', name: 'fullname' , orderable: false, searchable: false},
                         {data: 'action', name: 'action', orderable: false, searchable: false},
