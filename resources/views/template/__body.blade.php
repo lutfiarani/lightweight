@@ -1,7 +1,7 @@
 @include('template.__header')
 
 <body>
-    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header closed-sidebar">
         @include('template.__top_menu')
          
         <div class="app-main">
@@ -11,7 +11,7 @@
             </div>    
             <div class="app-main__outer">
                 @yield('content')
-                @include('template.foot')  
+                <!-- @include('template.foot')   -->
             </div>
             @yield('js')
         </div>
@@ -23,3 +23,5 @@
         $('.form-select').select2();
     })
 </script>
+<!-- hahaha -->
+

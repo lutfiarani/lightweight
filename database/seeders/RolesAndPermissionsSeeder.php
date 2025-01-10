@@ -25,13 +25,18 @@ class RolesAndPermissionsSeeder extends Seeder
         $dashboardData = Permission::create(['name' => 'dashboard_data']);
 
         // Membuat Peran
-        $adminRole = Role::create(['name' => 'admin']);
-        $productionRole = Role::create(['name' => 'production']);
+        $adminRole = Role::create(['name' => 'dev']);
+        $productionRole = Role::create(['name' => 'prod']);
         $viewerRole = Role::create(['name' => 'viewer']);
 
         // Memberikan izin kepada peran
-        $adminRole->givePermissionTo($inputMasterData, $deleteMasterData, $updateMasterData, $viewMasterData);
+        $role_user_requestor = Role::findByName('dev');
+        $role_user_requestor->givePermissionTo($inputMasterData, $deleteMasterData, $updateMasterData, $viewMasterData);
+
+        $productionRole = Role::findByName('prod');
         $productionRole->givePermissionTo($inputDataTimbangan, $deleteDataTimbangan, $viewDataTimbangan);
+
+        $viewerRole = Role::findByName('viewer');
         $viewerRole->givePermissionTo($dashboardData);
     }
 }
