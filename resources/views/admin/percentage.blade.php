@@ -1,4 +1,5 @@
 @extends('template.__body')
+@section('title', 'Set Percentage')
 
 {{-- @push('styles') --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css"/>
@@ -44,7 +45,7 @@
 <div class="container">
     <br>
     <div class="card">
-        <div class="card-header">Percentage of Weight Loss</div>
+        <div class="card-header"><h3>Percentage of Weight Loss</h3></div>
         <div class="card-body">
             <div class="table-container">
                 <table class="table table-bordered table-striped align-middle text-center" id="weightLossTable">

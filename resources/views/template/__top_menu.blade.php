@@ -1,6 +1,13 @@
+<style>
+    .logo-src {
+        background-image: none !important; /* Hapus background */
+    }
+
+</style>
 <div class="app-header header-shadow">
     <div class="app-header__logo">
-        <div class="logo-src"></div>
+        {{-- <div class="logo-src"></div> --}}
+        <img src="{{ asset('images/logo.png')}}" class="logo-src" alt="">
         <div class="header__pane ms-auto">
             <div>
                 <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -28,8 +35,10 @@
                 </span>
             </button>
         </span>
-    </div>    <div class="app-header__content">
+    </div>    
+    <div class="app-header__content">
         <div class="app-header-left">
+            @if (Auth::user()->hasRole('prod'))
             <ul class="header-menu nav">
                 <li class="nav-item" style="margin-right:10px">
                     <button id="connectButton" class="btn btn-dark">Connect to Digital Weight</button>
@@ -38,13 +47,14 @@
                 <li class="btn-group nav-item">
                     <div id="output"></div>
                 </li>
-            </ul>        
+            </ul>    
+            @endif    
         </div>
         <div class="app-header-right">
             <div class="header-btn-lg pe-0">
                 <div class="widget-content p-0">
                     <div class="widget-content-wrapper">
-                        <div class="widget-content-left">
+                        {{-- <div class="widget-content-left">
                             <div class="btn-group">
                                 
                                 
@@ -65,10 +75,19 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="widget-content-left  ms-3 header-user-info">
                             <div class="widget-heading">
-                                {{ Auth::user()->email }}
+                                {{ Auth::user()->email }}, 
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 @extends('template.__body')
+@section('title', 'Weight List Detail')
 <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css"/>
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.0/css/buttons.dataTables.css"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.1/apexcharts.min.css" rel="stylesheet">
@@ -50,7 +51,7 @@
 <div class="container">
     <br>
     <div class="card">
-        <div class="card-header">Weight List Detail</div>
+        <div class="card-header"><h3>Weight List Detail</h3></div>
         <div class="card-body">
             <div class="filters">
                 <div class="row">
@@ -103,7 +104,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    
     
     
     <div class="card-body">
@@ -133,13 +134,13 @@
             </table>
         </div>
     </div>
-    
+    </div>
 </div>
 @endsection
 
 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.2.0/js/dataTables.buttons.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.dataTables.js"></script>

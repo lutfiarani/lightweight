@@ -1,19 +1,20 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\WeightController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MasterController;
+use App\Http\Controllers\WeightController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PercentageController;
 use App\Http\Controllers\WeightListController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
-// Route::get('/', function () {
-    // return view('test');
-//     return view('admin.view_master_data');
-// });
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.custom-login');
+    // return view('admin.view_master_data');
 });
+// Route::get('/login', function () {
+//     return view('login');
+// });
 
 // Group rute yang dilindungi dengan middleware 'role:admin'
 Route::middleware(['role:prod'])->group(function () {
@@ -30,8 +31,8 @@ Route::middleware(['role:prod'])->group(function () {
 });
 
 
-Route::controller(MasterController::class)->group(function () {
-    Route::get('/', 'index')->name('index');
+Route::middleware([('role:dev')])->controller(MasterController::class)->group(function () {
+    Route::get('/index', 'index')->name('index');
     Route::get('/upload_master', 'upload_data')->name('master.upload');
     Route::post('/upload_master', 'upload_data')->name('master.upload_data');
     Route::post('/weight/import', 'import')->name('master.import');
@@ -42,7 +43,7 @@ Route::controller(MasterController::class)->group(function () {
 });
 
 
-Route::controller(WeightListController::class)->group(function () {
+Route::middleware([('role:dev')])->controller(WeightListController::class)->group(function () {
     Route::get('/weight-list', 'index')->name('weight-list');
     Route::post('/weight-list/data', 'getData')->name('weight-data');
     Route::get('weight-list/export', 'export');
@@ -52,7 +53,7 @@ Route::controller(WeightListController::class)->group(function () {
     Route::get('/listArticle/{id}', 'listArticle')->name('listArticle');
 });
 
-Route::controller(PercentageController::class)->group( function() {
+Route::middleware([('role:dev')])->controller(PercentageController::class)->group( function() {
     Route::get('/percentage', 'index')->name('percentage.value');
     Route::post('/update-weightloss/{id}', 'update')->name('weightloss.update');
 });
@@ -65,5 +66,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Route::get('/register', function(){
+//     return view('auth.custom-register');
+// })->middleware([('role:dev')])->name('register');
+
+Route::post('/register', [RegisteredUserController::class, 'store'])->middleware([('role:dev')]);
 
 require __DIR__.'/auth.php';

@@ -1,4 +1,5 @@
 @extends('template.__body')
+@section('title', 'Master Data')
 <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css"/>
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.0/css/buttons.dataTables.css"/>
 <style>

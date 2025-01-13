@@ -1,4 +1,5 @@
 @extends('template.__body')
+@section('title', 'Upper')
 
 @section('content')
 <style>
