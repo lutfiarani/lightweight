@@ -27,6 +27,10 @@ Route::middleware(['role:prod'])->group(function () {
     Route::post('/prod/view_data_result',[WeightController::class, 'view_data_result'])->name('view_data_result');
     Route::get('/prod/po',[WeightController::class, 'search_po'])->name('search_po');
     Route::post('/prod/delete_data_log',[WeightController::class, 'delete_data_log'])->name('delete_data_log');
+    Route::get('/prod/model_name',[WeightController::class, 'search_model_name'])->name('search_model_name');
+    Route::post('/prod/get_model_name',[WeightController::class, 'get_model_name'])->name('get_model_name');
+    Route::post('/prod/view_data_result_outsole',[WeightController::class, 'view_data_result_outsole'])->name('view_data_result_outsole');
+    Route::post('/prod/saving_data_weight_outsole',[WeightController::class, 'saving_data_outsole'])->name('saving_data_outsole');
     
 
 });

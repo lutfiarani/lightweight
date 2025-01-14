@@ -55,6 +55,15 @@ class WeightController extends Controller
     }
 
 
+    function get_model_name(Request $request){
+        $model_name = $request->input('model_name');
+
+        $data = WeightModel::get_data_model_name($model_name);
+
+        return response()->json($data);
+    }
+
+
     function get_data_log(Request $request){
         if ($request->ajax()) {
             $user = Auth::user()->fullname;
@@ -89,27 +98,88 @@ class WeightController extends Controller
         $size_qty       = $request->input('size_qty');
         $target_qty     = $request->input('target_qty');
         $weight         = $request->input('weight');
+        $posisi         = $request->input('posisi');
         $type           = Auth::user()->name;
         $time           = date('Y-m-d H:i:s');
         $fullname       = Auth::user()->fullname;
         $use_data       = 'Y';
+        $name           = Auth::user()->name;
 
-        $save_data = DB::table('log_weight')->insert([
-            'po_no'     => $po_no, 
-            'season'    => $season, 
-            'article'   => $article, 
+
+        $cek_balance = WeightModel::cek_balance($po_no, $name, $size)->first();
+
+        if($cek_balance->BALANCE > 0){
+
+            $save_data = DB::table('log_weight')->insert([
+                'po_no'     => $po_no, 
+                'season'    => $season, 
+                'article'   => $article, 
+                'model_name'=> $model_name, 
+                'po_qty'    => $po_qty, 
+                'destination' => $destination, 
+                'crd'       => $crd, 
+                'size'      => $size, 
+                'size_qty'  => $size_qty, 
+                'target_qty'=> $target_qty, 
+                'type'      => $type, 
+                'weight'    => $weight, 
+                'time'      => $time, 
+                'fullname'  => $fullname, 
+                'use_data'  => $use_data, 
+                'position'  => $posisi,
+                'created_at'    => now(),
+                'updated_at'    => now()
+            ]);
+
+            if($save_data){
+                $status = true;
+                $message = 'Success to save data';
+                if($posisi == 'R'){
+                    $next_posisi = 'L';
+                }else{
+                    $next_posisi = 'R';
+                }
+            }else{
+                $status = false;
+                $message = 'Failed to save data';
+                $next_posisi = $posisi;
+            }
+        }else{
+            $status = false;
+            $message = 'Failed to save data - balance 0';
+            $next_posisi = $posisi;
+        }
+
+        return response()->json(array(
+            'status'            => $status,
+            'message'           => $message,
+            'next_posisi'       => $next_posisi
+        ));
+
+        
+    }
+
+
+    function saving_data_outsole(Request $request){
+        $model_name     = $request->input('model_name');
+        $size           = $request->input('size');
+        $weight         = $request->input('weight');
+        $posisi         = $request->input('posisi');
+        $type           = Auth::user()->name;
+        $time           = date('Y-m-d H:i:s');
+        $fullname       = Auth::user()->fullname;
+        $use_data       = 'Y';
+        $name           = Auth::user()->name;
+
+        $save_data = DB::table('log_weight')->insert([ 
             'model_name'=> $model_name, 
-            'po_qty'    => $po_qty, 
-            'destination' => $destination, 
-            'crd'       => $crd, 
             'size'      => $size, 
-            'size_qty'  => $size_qty, 
-            'target_qty'=> $target_qty, 
             'type'      => $type, 
             'weight'    => $weight, 
             'time'      => $time, 
             'fullname'  => $fullname, 
             'use_data'  => $use_data, 
+            'position'  => $posisi,
             'created_at'    => now(),
             'updated_at'    => now()
         ]);
@@ -117,14 +187,21 @@ class WeightController extends Controller
         if($save_data){
             $status = true;
             $message = 'Success to save data';
+            if($posisi == 'R'){
+                $next_posisi = 'L';
+            }else{
+                $next_posisi = 'R';
+            }
         }else{
             $status = false;
             $message = 'Failed to save data';
+            $next_posisi = $posisi;
         }
 
         return response()->json(array(
-            'status'    => $status,
-            'message'   => $message
+            'status'            => $status,
+            'message'           => $message,
+            'next_posisi'       => $next_posisi
         ));
 
         
@@ -134,6 +211,14 @@ class WeightController extends Controller
     function view_data_result(Request $request){
         $po_no = $request->input('po_no');
         $data = WeightModel::view_data_result($po_no);
+
+        return response()->json($data);
+    }
+
+
+    function view_data_result_outsole(Request $request){
+        $model_name = $request->input('model_name');
+        $data = WeightModel::view_data_result_outsole($model_name);
 
         return response()->json($data);
     }
@@ -152,6 +237,24 @@ class WeightController extends Controller
             return [
                 'id' => $item->PO_NO,   // ID item
                 'text' => $item->PO_NO // Teks untuk ditampilkan
+            ];
+        });
+
+        return response()->json($formattedData);
+    }
+
+
+
+    function search_model_name(Request $request){
+        $query = $request->get('term', ''); // Dapatkan input pencarian dari Select2
+
+        $data = WeightModel::search_model_name($query);
+        
+        // Format data untuk Select2
+        $formattedData = $data->map(function ($item) {
+            return [
+                'id' => $item->model_name,   // ID item
+                'text' => $item->model_name // Teks untuk ditampilkan
             ];
         });
 

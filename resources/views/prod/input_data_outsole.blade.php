@@ -26,6 +26,11 @@
   </style>
 
 <div class="app-main__inner">
+    <div class="app-page-title" style="margin-bottom: 0.5rem; padding-left:1.5rem; padding-top:0.5rem; padding-bottom:0.5rem">
+        <div class="page-title-wrapper">
+            <label  style="font-size:1rem; font-weight:800" id="fullname">{{ mb_convert_case(Auth::user()->fullname, MB_CASE_TITLE, "UTF-8"); }} </label>
+        </div>
+    </div>
     <!-- <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
@@ -58,17 +63,11 @@
         <div class="col-xl-6">
             <div class="row" style="margin:0px">
                 <div class="col-md-6" style="padding:2px">
-                    <div class="row">
-                        <div class="col-md-6">
+                    <div class="row" style="margin-bottom:7px">
+                        <div class="col-md-12">
                             <div class="position-relative mb-3">
-                                <label for="exampleEmail11" class="form-label"><b>Size</b></label>
-                                <input name="size" id="size" id="exampleEmail11" placeholder="Size" type="text" class="form-control" readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="position-relative mb-3">
-                                <label for="exampleEmail11" class="form-label"><b>qty</b></label>
-                                <input name="size_qty" id="size_qty" id="exampleEmail11" placeholder="Size Qty" type="text" class="form-control" readonly>
+                                <label for="exampleEmail11" class="form-label"><b>Model Name</b></label>
+                                <select name="model_name" id="model_name" placeholder="Model Name" type="text" class="form-control" style="width:100%"></select>
                             </div>
                         </div>
                     </div>
@@ -80,9 +79,13 @@
                     
                 </div>
                 <div class="col-md-6" style="padding:2px">
-                    <div class="position-relative mb-3">
-                        <label for="exampleEmail11" class="form-label"><b>Target Quantity </b></label>
-                        <input name="target_qty"  id="target_qty" placeholder="Target Qty" type="number" class="form-control" readonly>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="position-relative mb-3">
+                                <label for="exampleEmail11" class="form-label"><b>Size</b></label>
+                                <input name="size" id="size"  placeholder="Size" type="text" class="form-control" readonly>
+                            </div>
+                        </div>
                     </div>
                     <div class="position-relative ">
                         <label for="exampleEmail11" class="form-label"><b>Production Weight Result</b></label>
@@ -93,22 +96,34 @@
         </div>
         <div class="col-xl-6"  style="padding:2px">
             <form class="row">
-                <div class="col-auto">
-                    <label  style="font-size:1rem; font-weight:800" >{{ Auth::user()->fullname }} </label>
+                <div class="col-sm-4">
+                    <div class="position-relative mb-3">
+                        <label for="exampleEmail11" class="form-label"><b>Position </b></label>
+                        <select class="form-control" name="posisi" id="posisi">
+                            <option value="L">Left</option>
+                            <option value="R">Right</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" id="haha" readonly>
+                <div class="col-sm-4">
+                    <div class="position-relative mb-3">
+                        <label for="exampleEmail11" class="form-label"><b>Weight </b></label>
+                        <input type="text" class="form-control" id="haha" readonly>
+                    </div>
                 </div>
-                <div class="col-auto">
-                    <button type="button" class="btn btn-primary mb-3" name="button_save" id="button_save">Save Weight</button>
+                <div class="col-sm-4">
+                    <div class="position-relative mb-3">
+                        <button type="button" class="btn btn-primary mb-3" style="margin-top:1.5rem" name="button_save" id="button_save">Save Data</button>
+                    </div>
                 </div>
             </form>
             <table class="table table-bordered data-table" style="font-size:11px">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Po No</th>
+                        <th>Model Name</th>
                         <th>Weight</th>
+                        <th>Position</th>
                         <th>Time</th>
                         <th>Name</th>
                         <th >Action</th>
@@ -151,11 +166,11 @@
 
 
             // $('#mySelect').select2();
-            $('#po_no').select2({
-                placeholder: 'Search PO...',
+            $('#model_name').select2({
+                placeholder: 'Search Model Name...',
                 minimumInputLength: 4, // Mulai pencarian setelah mengetik 1 karakter
                 ajax: {
-                    url: "{{ route('search_po') }}", // Ganti dengan URL endpoint API Anda
+                    url: "{{ route('search_model_name') }}", // Ganti dengan URL endpoint API Anda
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -197,6 +212,8 @@
                         alert(hasil.message)
                         destroy_tampil_data()
                         get_datatables()
+                        var model_name = $('#model_name').val()
+                        get_data_result_outsole(model_name)
                     }
                 })
             }
@@ -213,8 +230,9 @@
                     ajax: "{{ route('get_data_log') }}",
                     columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
-                        {data: 'po_no', name: 'po_no' , orderable: false, searchable: false},
+                        {data: 'model_name', name: 'model_name' , orderable: false, searchable: false},
                         {data: 'weight', name: 'weight' , orderable: false, searchable: false},
+                        {data: 'position', name: 'position', orderable: false, searchable: false},
                         {data: 'timetime', name: 'timetime', orderable: false, searchable: false},
                         {data: 'fullname', name: 'fullname' , orderable: false, searchable: false},
                         {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -228,12 +246,13 @@
 
             // load awal
 
-            var po_no = $('#po_no').val()
+            var model_name = $('#model_name').val()
             get_datatables()
-            get_data_result(po_no)
+            get_data_result_outsole(model_name)
+            cek_posisi()
 
 
-            function get_data_result(po_no){
+            function get_data_result_outsole(model_name){
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -241,22 +260,22 @@
                 });
                 $.ajax({
                     type:"post",
-                    url:"{{ url('/prod/view_data_result') }}",
-                    data:{po_no:po_no},
+                    url:"{{ url('/prod/view_data_result_outsole') }}",
+                    data:{model_name:model_name},
                     success: function(hasil){
                         console.log(hasil)
-                        var target_qty = $('#target_qty').val()
+                        // var target_qty = $('#target_qty').val()
 
                         var midas_data = ''
                         for (let index = 0; index < hasil.length; index++) {
                             midas_data += '<div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">'
                             midas_data += '    <div class="widget-content-wrapper text-white">'
                             midas_data += '        <div class="widget-content-left">'
-                            midas_data += '            <div class="widget-heading text-white"><h6>'+hasil[index].full_process_name+'</h6></div>'
+                            midas_data += '            <div class="widget-heading text-white"><h5>'+hasil[index].full_process_name+'</h5></div>'
                             midas_data += '            <div class="widget-numbers text-white" style="float:left" ><i class="fa-light fa-boot fa-1x"></i></div>'
                             midas_data += '        </div>'
                             midas_data += '        <div class="widget-content-right">'
-                            midas_data += '            <div class="widget-numbers text-white" style="font-size:1.1rem" ><span >'+(hasil[index].min_standard == ".00" ? "0.00" : hasil[index].min_standard)+' - '+ (hasil[index].max_standard == ".00" ? "0.00" :hasil[index].max_standard)+'</span></div>'
+                            midas_data += '            <div class="widget-numbers text-white" style="font-size:1.2rem" ><span >'+(hasil[index].min_standard == ".00" ? "0.00" : hasil[index].min_standard)+' - '+ (hasil[index].max_standard == ".00" ? "0.00" :hasil[index].max_standard)+'</span></div>'
                             midas_data += '            <div class="widget-numbers text-white" style="float:right" ><span >'+(hasil[index].standard == ".00" ? "0.00" : hasil[index].standard)+'g</span></div>'
                             midas_data += '        </div>'
                             midas_data += '    </div>'
@@ -268,11 +287,11 @@
                             tampil_data += '<div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">'
                             tampil_data += '    <div class="widget-content-wrapper text-white">'
                             tampil_data += '        <div class="widget-content-left">'
-                            tampil_data += '            <div class="widget-heading text-white"><h6>Target : <span class="target_qty"></span>pcs</h6></div>'
-                            tampil_data += '            <div class="widget-numbers text-white" style="float:left" ><span >'+hasil[index].jumlah_qty+'</span></div>'
+                            // tampil_data += '            <div class="widget-heading text-white"><h6>Target : <span class="target_qty"></span>pcs</h6></div>'
+                            tampil_data += '            <div class="widget-numbers text-white" style="float:left" ><span >'+hasil[index].jumlah_qty+'</span><span> Pcs</span></div>'
                             tampil_data += '        </div>'
                             tampil_data += '        <div class="widget-content-right">'
-                            tampil_data += '            <div class="widget-numbers text-white" style="font-size:1.1rem" ><span >'+(hasil[index].min_rata_rata == ".00" ? "0.00" : hasil[index].min_rata_rata)+' - '+ (hasil[index].max_rata_rata == ".00" ? "0.00" :hasil[index].max_rata_rata)+'</span></div>'
+                            tampil_data += '            <div class="widget-numbers text-white" style="font-size:1.2rem" ><span >'+(hasil[index].min_rata_rata == ".00" ? "0.00" : hasil[index].min_rata_rata)+' - '+ (hasil[index].max_rata_rata == ".00" ? "0.00" :hasil[index].max_rata_rata)+'</span></div>'
                             tampil_data += '            <div class="widget-numbers text-white" style="float:right" ><span >'+(hasil[index].rata_rata == ".00" ? "0.00" : hasil[index].rata_rata)+'g</span></div>'
                             tampil_data += '        </div>'
                             tampil_data += '    </div>'
@@ -287,51 +306,32 @@
 
             
 
-            $('#po_no').change(function (event) {
+            $('#model_name').change(function (event) {
                 // if (event.key === 'Enter' || event.keyCode === 13) {
-                    const po_no = $(this).val();
-                    get_data_po(po_no)
-                    get_data_result(po_no)
+                    const model_name = $(this).val();
+                    get_data_model_name(model_name)
+                    get_data_result_outsole(model_name)
+                    sessionStorage.setItem('model_model', model_name)
+                    // console.log('okeokoe')
                     
                 // }
             });
 
             // button untuk menyimpan data
             $('#button_save').click(function(){
-                var po_no       = $('#po_no').val()
                 var model_name  = $('#model_name').val()
-                var article     = $('#article').val()
-                var po_qty      = $('#po_qty').val()
-                var destination = $('#destination').val()
-                var crd         = $('#crd').val()
-                var season      = $('#season').val()
                 var size        = $('#size').val()
-                var size_qty    = $('#size_qty').val()
-                var target_qty  = $('#target_qty').val()
+                var posisi      = $('#posisi').val()
 
                 var weight      = $('#haha').val()
 
                 if(
-                    po_no == null || 
-                    po_no == '' ||
                     model_name == null ||
                     model_name == '' ||
-                    article == null ||
-                    article == '' ||
-                    po_qty == null ||
-                    po_qty == '' ||
-                    destination == null ||
-                    destination == '' ||
-                    crd == null ||
-                    crd == '' ||
-                    season== null ||
-                    season== '' ||
                     size == null ||
                     size == '' ||
-                    size_qty == null ||
-                    size_qty == '' ||
-                    target_qty == null ||
-                    target_qty == '' ||
+                    posisi == null ||
+                    posisi == '' ||
                     weight == null ||
                     weight == ''
                 ){
@@ -345,24 +345,21 @@
 
                     $.ajax({
                         type:"POST",
-                        url:"{{ route('saving_data') }}",
+                        url:"{{ route('saving_data_outsole') }}",
                         data    : {
-                            po_no:po_no,
                             model_name:model_name,
-                            article:article,
-                            po_qty:po_qty,
-                            destination:destination,
-                            crd:crd,
-                            season:season,
                             size:size,
-                            size_qty:size_qty,
-                            target_qty:target_qty,
+                            posisi:posisi,
                             weight:weight,
                         },
                         success: function(hasil){
                             alert(hasil.message)
                             destroy_tampil_data()
                             get_datatables()
+                            localStorage.setItem('posisi', hasil.next_posisi);
+                            cek_posisi()
+                            var model_name = sessionStorage.getItem('model_model')
+                            get_data_result_outsole(model_name)
                             $('#haha').val('')
                         }
                     });
@@ -370,55 +367,31 @@
             })
 
 
-            function get_data_po(po_no){
+            function cek_posisi(){
+                var posisi = localStorage.getItem('posisi');
+                if(posisi == null || posisi == ''){
+                    var posisi_baru = 'L';
+                }else{
+                    var posisi_baru = posisi;
+                }
+                // console.log(posisi)
+                $('#posisi').val(posisi_baru)
+            }
+
+
+            function get_data_model_name(model_name){
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
                 $.ajax({
-                    type:"get",
-                    url:"{{ url('/prod/get_po') }}"+"/"+po_no,
+                    type:"post",
+                    url:"{{ route('get_model_name') }}",
+                    data:{model_name:model_name},
                     success: function(hasil){
-                        console.log(hasil)
-                        // if(hasil.midas_information)
-                        if(hasil.midas_information.length == 0){
-                            alert('Standard information not found, please contact Development')
-                            $('#model_name').val('')
-                            $('#article').val('')
-                            $('#po_qty').val('')
-                            $('#destination').val('')
-                            $('#crd').val('')
-                            $('#season').val('')
-                            $('#size').val('')
-                            $('#size_qty').val('')
-                            $('#target_qty').val('')
-                        }else if(hasil.po_information.length == 0){
-                            alert('PO information not found')
-                        }else if(hasil.size_information.length == 0){
-                            alert('Size information not found')
-                        }else{
-                            var tampil_po = hasil.po_information[0]
-                            var tampil_midas = hasil.midas_information[0]
-                            var tampil_size = hasil.size_information[0]
-
-                            // console.log(tampil_po)
-                            $('#model_name').val(tampil_po.MODEL_NAME)
-                            $('#article').val(tampil_po.ART_NO)
-                            $('#po_qty').val(tampil_po.TOTAL_QTY)
-                            $('#destination').val(tampil_po.COUNTRY)
-                            const date = tampil_po.CRD;
-                            const datePart = date.substring(0, 10);
-                            $('#crd').val(datePart)
-                            $('#season').val(tampil_midas.season)
-
-                            $('#size').val(tampil_midas.sample_size)
-                            $('#size_qty').val(tampil_size.SAMPLE_QTY)
-
-                            $('#target_qty').val(tampil_size.TARGET_QTY)
-
-                            $('.target_qty').text(tampil_size.TARGET_QTY);
-                        }
+                        // console.log(hasil)
+                        $('#size').val(hasil.sample_size)
                     }
                 });
             }
