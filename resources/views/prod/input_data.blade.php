@@ -213,6 +213,9 @@
                         alert(hasil.message)
                         destroy_tampil_data()
                         get_datatables()
+                        var lotid = sessionStorage.getItem('lotid');
+                        get_data_po(lotid)
+                        get_data_result(lotid)
                     }
                 })
             }
@@ -317,6 +320,7 @@
                     get_data_result(lotid)
                     $('#lot_id').val('')
                     fokus_scan()
+                    sessionStorage.setItem('lotid', lotid);
                 }
             });
 
@@ -392,6 +396,9 @@
                             $('#haha').val('')
                             localStorage.setItem('posisi', hasil.next_posisi);
                             cek_posisi()
+                            var lotid = sessionStorage.getItem('lotid');
+                            get_data_po(lotid)
+                            get_data_result(lotid)
                             fokus_scan()
                         }
                     });

@@ -97,40 +97,47 @@ class WeightController extends Controller
         $name           = Auth::user()->name;
 
 
-        // $cek_balance = WeightModel::cek_balance($po_no, $name);
+        $cek_balance = WeightModel::cek_balance($po_no, $name, $size)->first();
 
-        $save_data = DB::table('log_weight')->insert([
-            'po_no'     => $po_no, 
-            'season'    => $season, 
-            'article'   => $article, 
-            'model_name'=> $model_name, 
-            'po_qty'    => $po_qty, 
-            'destination' => $destination, 
-            'crd'       => $crd, 
-            'size'      => $size, 
-            'size_qty'  => $size_qty, 
-            'target_qty'=> $target_qty, 
-            'type'      => $type, 
-            'weight'    => $weight, 
-            'time'      => $time, 
-            'fullname'  => $fullname, 
-            'use_data'  => $use_data, 
-            'position'  => $posisi,
-            'created_at'    => now(),
-            'updated_at'    => now()
-        ]);
+        if($cek_balance->BALANCE > 0){
 
-        if($save_data){
-            $status = true;
-            $message = 'Success to save data';
-            if($posisi == 'R'){
-                $next_posisi = 'L';
+            $save_data = DB::table('log_weight')->insert([
+                'po_no'     => $po_no, 
+                'season'    => $season, 
+                'article'   => $article, 
+                'model_name'=> $model_name, 
+                'po_qty'    => $po_qty, 
+                'destination' => $destination, 
+                'crd'       => $crd, 
+                'size'      => $size, 
+                'size_qty'  => $size_qty, 
+                'target_qty'=> $target_qty, 
+                'type'      => $type, 
+                'weight'    => $weight, 
+                'time'      => $time, 
+                'fullname'  => $fullname, 
+                'use_data'  => $use_data, 
+                'position'  => $posisi,
+                'created_at'    => now(),
+                'updated_at'    => now()
+            ]);
+
+            if($save_data){
+                $status = true;
+                $message = 'Success to save data';
+                if($posisi == 'R'){
+                    $next_posisi = 'L';
+                }else{
+                    $next_posisi = 'R';
+                }
             }else{
-                $next_posisi = 'R';
+                $status = false;
+                $message = 'Failed to save data';
+                $next_posisi = $posisi;
             }
         }else{
             $status = false;
-            $message = 'Failed to save data';
+            $message = 'Failed to save data - balance 0';
             $next_posisi = $posisi;
         }
 

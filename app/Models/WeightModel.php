@@ -47,4 +47,12 @@ class WeightModel extends Model
     }
 
 
+    public static function cek_balance($po_no, $name, $size){
+        $data = collect(DB::select("
+            EXEC CEK_BALANCE_PO @PO_NO = '$po_no', @TYPE = '$name', @SIZE = '$size'
+        "));
+        return $data;
+    }
+
+
 }
