@@ -82,21 +82,20 @@
                     <div class="col">
                         <label>Model:</label>
                         <select name="model" id="model" class="form-select select2"></select>
-                        
                     </div>
                     <div class="col">
                         <label>Article:</label>
                         <select name="article" id="article" class="form-select"></select>
                     </div>
-                    <div class="col">
+                    <div class="col" hidden>
                         <br>
                         <input type="checkbox" id="group_po" checked>
                         <label>Group PO & Size</label>
                     </div>
                     <div class="col">
                         <br>
-                        <button id="search" class="btn btn-primary">Search</button>
-                        <button id="export" class="btn btn-success">Export Excel</button>
+                        <button id="search" class="btn btn-primary"><i class="pe-7s-search"></i>Search</button>
+                        <button id="export" class="btn btn-success"><i class="pe-7s-file"></i>Export Excel</button>
                     </div>
                 </div>
                 <div class="row mt-2">
@@ -153,6 +152,7 @@
 
 <script>
      $(document).ready(function() {
+        
         const fac   = $('#factory').val()
         const model = $('#model').val()
         
@@ -160,6 +160,7 @@
         cell(fac)
         listModel()
         article(model)
+
         new DataTable('#table_detail', {
             // destroy: true,
             retrieve: true,

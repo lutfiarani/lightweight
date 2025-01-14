@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MasterModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MasterController extends Controller
 {
@@ -40,107 +41,17 @@ class MasterController extends Controller
         }
     }
     
-    public function detail($id){
-        $product = DB::table('master_data')
-                    ->where('article', $id)->first();
+    private function generateOptions($resultSet)
+    {
+        $options = '';
+        $options .="<option value=''>Choose option..</option>";
 
-        $types = [
-            'as' => 'assembly',
-            'up' => 'upper',
-            'sf' => 'stock_fit',
-            'os' => 'outsole',
-            'ms' => 'midsole',
-            'sockliner' => 'sockliner'
-        ];
-
-        $weightStats = [];
-        foreach ($types as $key => $value) {
-            $stats = DB::table('log_weight')
-                        ->selectRaw('
-                            AVG(weight) as average,
-                            MIN(weight) as minimum,
-                            MAX(weight) as maximum
-                        ')
-                        ->where('article', $id)
-                        ->where('use_data', 'Y')
-                        ->where('type', $key)
-                        ->first();
-            
-            $weightStats[$value] = [
-                'average' => $stats->average,
-                'minimum' => $stats->minimum,
-                'maximum' => $stats->maximum
-            ];
+        foreach ($resultSet as $record) {
+            $data = (array)$record;
+            $options .= "<option value='{$data['NAME']}'>{$data['NAME']}</option>";
         }
-
-        $weightData = DB::table('master_data')
-                        ->where('article', $id) 
-                        ->get()
-                        ->groupBy('stage')
-                        ->map(function($stageData) use ($weightStats) {
-                            return [
-                                'brand_target'=> [
-                                    'previous' => $stageData->first()->target,
-                                    'confirm' => $stageData->first()->target,
-                                    'average' => null,
-                                    'min' => null,
-                                    'max' => null,
-                                ],
-                                'assembly' => [
-                                    'previous' => $stageData->first()->AS,
-                                    'confirm' => $stageData->first()->AS,
-                                    'average' => $weightStats['assembly']['average'],
-                                    'min' => $weightStats['assembly']['minimum'],
-                                    'max' => $weightStats['assembly']['maximum']
-                                ], 
-                                'upper' => [
-                                    'previous' => $stageData->first()->UP,
-                                    'confirm' => $stageData->first()->UP,
-                                    'average' => $weightStats['upper']['average'],
-                                    'min' => $weightStats['upper']['minimum'],
-                                    'max' => $weightStats['upper']['maximum']
-                                ],
-                                'stockfit' => [
-                                    'previous' => $stageData->first()->SF,
-                                    'confirm' => $stageData->first()->SF,
-                                    'average' => $weightStats['stock_fit']['average'],
-                                    'min' => $weightStats['stock_fit']['minimum'],
-                                    'max' => $weightStats['stock_fit']['maximum']
-                                ],
-                                'outsole' => [
-                                    'previous' => $stageData->first()->OS,
-                                    'confirm' => $stageData->first()->OS,
-                                    'average' => $weightStats['outsole']['average'],
-                                    'min' => $weightStats['outsole']['minimum'],
-                                    'max' => $weightStats['outsole']['maximum']
-                                ], 
-                                'sockliner' => [
-                                    'previous' => $stageData->first()->sockliner,
-                                    'confirm' => $stageData->first()->sockliner,
-                                    'average' => $weightStats['sockliner']['average'],
-                                    'min' => $weightStats['sockliner']['minimum'],
-                                    'max' => $weightStats['sockliner']['maximum']
-                                ],
-                                'midsole' => [
-                                    'previous' => $stageData->first()->MS,
-                                    'confirm' => $stageData->first()->MS,
-                                    'average' => $weightStats['midsole']['average'],
-                                    'min' => $weightStats['midsole']['minimum'],
-                                    'max' => $weightStats['midsole']['maximum']
-                                ]
-                                ];
-                        })->toArray();
-        
-        $availableStages = DB::table('master_data')
-                            ->where('article', $id)
-                            ->pluck('stage')
-                            ->toArray();
-
-        $imagenya   = MasterModel::get_image($id);
-
-        return view('admin.view_detail_v01', compact('product', 'weightData', 'availableStages', 'imagenya'));
+        return $options;
     }
-
     public function list_search()
     {
         try {
@@ -170,19 +81,7 @@ class MasterController extends Controller
             ], 500);
         }
     }
-
-    private function generateOptions($resultSet)
-    {
-        $options = '';
-        $options .="<option value=''>Choose option..</option>";
-
-        foreach ($resultSet as $record) {
-            $data = (array)$record;
-            $options .= "<option value='{$data['NAME']}'>{$data['NAME']}</option>";
-        }
-        return $options;
-    }
-
+    
     public function search(Request $request){
         $data = [
             'development_center' => $request->input('development_center'),

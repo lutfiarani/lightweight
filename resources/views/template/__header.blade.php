@@ -13,7 +13,8 @@
     <meta name="msapplication-tap-highlight" content="no">
     {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
     <link rel="preload" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
+    {{-- <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" /> --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="icon" href="{{ asset('images/lightweight_.png')}}">
     <script defer src="{{ asset('template/assets/scripts/main.js')}}"></script>
     <script defer src="{{ asset('template/assets/scripts/demo.js')}}"></script>
@@ -22,7 +23,7 @@
     <script defer src="{{ asset('template/assets/scripts/fullcalendar.js')}}"></script>
     <script defer src="{{ asset('template/assets/scripts/maps.js')}}"></script>
     <script defer src="{{ asset('template/assets/scripts/chart_js.js')}}"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <style>
                 /* Mengatur tinggi container select2 */
         .select2-container .select2-selection--single {

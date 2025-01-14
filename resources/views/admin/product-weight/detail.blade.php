@@ -98,6 +98,18 @@
             </table>
         </div>
     </div>
+    <br>
+
+    <a href="{{ route('product-weight.export-pdf', $product->article) }}" class="btn btn-danger">
+        <i class="pe-7s-file"></i>Export to PDF
+    </a>
+    <a href="{{ route('product-weight.preview-pdf', $product->article) }}" 
+        class="btn btn-info" 
+        target="_blank">
+        <i class="pe-7s-search"></i>
+         Preview PDF
+     </a>
+     
     <hr>
     <div class="row">
         <div class="col-md-12">
@@ -132,25 +144,25 @@
                                             {{-- Status Table --}}
                                             <table class="table table-bordered align-center">
                                                 <tr>
-                                                    <th>Status</th>
+                                                    <th class="table-dark">Status</th>
                                                     <td>{{ $product->weight_status}}</td>
-                                                    <th>Update Date</th>
+                                                    <th class="table-dark">Update Date</th>
                                                     <td> {{ $product->updated_at}} </td>
-                                                    <th class="bg-danger">L</th>
-                                                    <td class="bg-danger">0</td>
-                                                    <th class="bg-danger">R</th>
-                                                    <td class="bg-danger">0</td>
+                                                    <th class="table-dark">L</th>
+                                                    <td>{{ $countLeftRight[0][0] }}</td>
+                                                    <th class="table-dark">R</th>
+                                                    <td>{{ $countLeftRight[0][1] }}</td>
                                                 </tr>
                                             </table>
                                             <hr>
                                             <div class="row">
                                                 <div class="col-sm-8">
                                                     <table class="table table-bordered">
-                                                        <thead>
+                                                        <thead class="table-dark">
                                                             <tr>
                                                                 <th>No</th>
                                                                 <th>Part Name</th>
-                                                                <th>Previous Stage Weight</th>
+                                                                {{-- <th>Previous Stage Weight</th> --}}
                                                                 <th>Confirm Weight</th>
                                                                 <th>Average Weight</th>
                                                                 <th>Min Weight</th>
@@ -164,7 +176,7 @@
                                                             <tr>
                                                                 <td>1</td>
                                                                 <td class="bg-danger">Brand Target</td>
-                                                                <td class="bg-danger">{{ $currentStageData['brand_target']['previous'] ?? '' }}</td>
+                                                                {{-- <td class="bg-danger">{{ $currentStageData['brand_target']['previous'] ?? '' }}</td> --}}
                                                                 <td class="bg-danger">{{ $currentStageData['brand_target']['confirm'] ?? '' }}</td>
                                                                 <td class="bg-danger">{{ $currentStageData['brand_target']['average'] ? number_format($currentStageData['brand_target']['average'], 2) : '' }}</td>
                                                                 <td class="bg-danger">{{ $currentStageData['brand_target']['min'] ? number_format($currentStageData['brand_target']['min'], 2) : '' }}</td>
@@ -173,7 +185,7 @@
                                                             <tr>
                                                                 <td>2</td>
                                                                 <td>Assembly (g)</td>
-                                                                <td>{{ $currentStageData['assembly']['previous'] ?? '' }}</td>
+                                                                {{-- <td>{{ $currentStageData['assembly']['previous'] ?? '' }}</td> --}}
                                                                 <td>{{ $currentStageData['assembly']['confirm'] ?? '' }}</td>
                                                                 <td>{{ $currentStageData['assembly']['average'] ? number_format($currentStageData['assembly']['average'], 2) : '' }}</td>
                                                                 <td>{{ $currentStageData['assembly']['min'] ? number_format($currentStageData['assembly']['min'], 2) : '' }}</td>
@@ -182,7 +194,7 @@
                                                             <tr>
                                                                 <td>3</td>
                                                                 <td>Upper (g)</td>
-                                                                <td>{{ $currentStageData['upper']['previous'] ?? '' }}</td>
+                                                                {{-- <td>{{ $currentStageData['upper']['previous'] ?? '' }}</td> --}}
                                                                 <td>{{ $currentStageData['upper']['confirm'] ?? '' }}</td>
                                                                 <td>{{ $currentStageData['upper']['average'] ? number_format($currentStageData['upper']['average'], 2) : '' }}</td>
                                                                 <td>{{ $currentStageData['upper']['min'] ? number_format($currentStageData['upper']['min'], 2) : '' }}</td>
@@ -191,7 +203,7 @@
                                                             <tr>
                                                                 <td>4</td>
                                                                 <td>Stock Fit (g)</td>
-                                                                <td>{{ $currentStageData['stockfit']['previous'] ?? '' }}</td>
+                                                                {{-- <td>{{ $currentStageData['stockfit']['previous'] ?? '' }}</td> --}}
                                                                 <td>{{ $currentStageData['stockfit']['confirm'] ?? '' }}</td>
                                                                 <td>{{ $currentStageData['stockfit']['average'] ? number_format($currentStageData['stockfit']['average'], 2) : '' }}</td>
                                                                 <td>{{ $currentStageData['stockfit']['min'] ? number_format($currentStageData['stockfit']['min'], 2) : '' }}</td>
@@ -200,7 +212,7 @@
                                                             <tr>
                                                                 <td>5</td>
                                                                 <td>Outsole (g)</td>
-                                                                <td>{{ $currentStageData['outsole']['previous'] ?? '' }}</td>
+                                                                {{-- <td>{{ $currentStageData['outsole']['previous'] ?? '' }}</td> --}}
                                                                 <td>{{ $currentStageData['outsole']['confirm'] ?? '' }}</td>
                                                                 <td>{{ $currentStageData['outsole']['average'] ? number_format($currentStageData['outsole']['average'], 2) : '' }}</td>
                                                                 <td>{{ $currentStageData['outsole']['min'] ? number_format($currentStageData['outsole']['min'], 2) : '' }}</td>
@@ -209,7 +221,7 @@
                                                             <tr>
                                                                 <td>6</td>
                                                                 <td>Mid Sole (g)</td>
-                                                                <td>{{ $currentStageData['midsole']['previous'] ?? '' }}</td>
+                                                                {{-- <td>{{ $currentStageData['midsole']['previous'] ?? '' }}</td> --}}
                                                                 <td>{{ $currentStageData['midsole']['confirm'] ?? '' }}</td>
                                                                 <td>{{ $currentStageData['midsole']['average'] ? number_format($currentStageData['midsole']['average'], 2) : '' }}</td>
                                                                 <td>{{ $currentStageData['midsole']['min'] ? number_format($currentStageData['midsole']['min'], 2) : '' }}</td>
@@ -218,7 +230,7 @@
                                                             <tr>
                                                                 <td>7</td>
                                                                 <td>Sockliner (g)</td>
-                                                                <td>{{ $currentStageData['sockliner']['previous'] ?? '' }}</td>
+                                                                {{-- <td>{{ $currentStageData['sockliner']['previous'] ?? '' }}</td> --}}
                                                                 <td>{{ $currentStageData['sockliner']['confirm'] ?? '' }}</td>
                                                                 <td>{{ $currentStageData['sockliner']['average'] ? number_format($currentStageData['sockliner']['average'], 2) : '' }}</td>
                                                                 <td>{{ $currentStageData['sockliner']['min'] ? number_format($currentStageData['sockliner']['min'], 2) : '' }}</td>
@@ -229,25 +241,27 @@
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <table class="table table-bordered">
-                                                        <thead>
+                                                        <thead class='table-dark'>
                                                             <tr>
-                                                                <th class="bg-danger">No</th>
-                                                                <th class="bg-danger">Part</th>
-                                                                <th class="bg-danger">L/R</th>
-                                                                <th class="bg-danger">Weight</th>
-                                                                <th class="bg-danger">Scan Date</th>
+                                                                <th>No</th>
+                                                                <th>Part</th>
+                                                                <th>L/R</th>
+                                                                <th>Weight</th>
+                                                                <th>Scan Date</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @for($j = 0; $j < 7; $j++)
+                                                            @php $i = 0 @endphp
+                                                            @foreach($listLeftRight as $l)
+                                                            @php $i++ @endphp
                                                                 <tr>
-                                                                    <td class="bg-danger">&nbsp;</td>
-                                                                    <td class="bg-danger"></td>
-                                                                    <td class="bg-danger"></td>
-                                                                    <td class="bg-danger"></td>
-                                                                    <td class="bg-danger"></td>
+                                                                    <td>{{($i)}}</td>
+                                                                    <td>{{ $l->fullname }}</td>
+                                                                    <td>{{ $l->position }}</td>
+                                                                    <td>{{ $l->weight }}</td>
+                                                                    <td>{{ $l->created_at }}</td>
                                                                 </tr>
-                                                            @endfor
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                 </div>

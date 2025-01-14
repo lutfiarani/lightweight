@@ -1,7 +1,7 @@
  
-// let url = new URL('http://127.0.0.1:8000');
+let url = new URL('http://127.0.0.1:8000');
 
-let url = new URL('http://10.10.40.42:8080/');
+// let url = new URL('http://10.10.40.42:8080/');
 
 function list_search(){
     $.ajax({
@@ -125,8 +125,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const row = document.createElement('tr');
                 row.className = `po-items po-${poNo} collapsed`;
                 row.innerHTML = `
-                    <td>${item.factory || ''}</td>
-                    <td>${item.line || ''}</td>
+                    <td>${item.FACTORY2 || ''}</td>
+                    <td>${item.CELL_CODE || ''}</td>
                     <td>${item.season || ''}</td>
                     <td>${item.po_no}</td>
                     <td>${item.model_name}</td>
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
             start_date: document.getElementById('start_date').value,
             end_date: document.getElementById('end_date').value,
             factory: document.getElementById('factory').value,
-            line: document.getElementById('line').value,
+            line: document.getElementById('cell').value,
             po_no: document.getElementById('po_no').value,
             model: document.getElementById('model').value,
             article: document.getElementById('article').value

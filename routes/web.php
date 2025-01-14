@@ -6,6 +6,7 @@ use App\Http\Controllers\WeightController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PercentageController;
 use App\Http\Controllers\WeightListController;
+use App\Http\Controllers\ProductWeightController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/', function () {
@@ -37,9 +38,15 @@ Route::middleware([('role:dev')])->controller(MasterController::class)->group(fu
     Route::post('/upload_master', 'upload_data')->name('master.upload_data');
     Route::post('/weight/import', 'import')->name('master.import');
     Route::get('/view_upload', 'view_upload')->name('master.view');
-    Route::get('/listSearch', 'list_search')->name('master.listSearch');
-    Route::get('/view_detail/{id}', 'detail')->name('product.detail');
     Route::post('/searchData', 'search' )->name('searchData');
+    Route::get('/listSearch', 'list_search')->name('master.listSearch');
+});
+
+Route::middleware([('role:dev')])->controller(ProductWeightController::class)->group(function () {
+    Route::get('/view_detail/{id}', 'detail')->name('product.detail');
+    Route::get('/product-weight/{id}/export-pdf', 'exportPDF')->name('product-weight.export-pdf');
+    Route::get('/product-weight/{id}/preview-pdf', 'previewPDF')->name('product-weight.preview-pdf');
+    
 });
 
 
@@ -51,6 +58,7 @@ Route::middleware([('role:dev')])->controller(WeightListController::class)->grou
     Route::get('/listCell/{id}', 'listCell')->name('listCell');
     Route::get('/listModel', 'listModel')->name('listModel');
     Route::get('/listArticle/{id}', 'listArticle')->name('listArticle');
+    Route::get('/weight-list/export', 'export')->name('weight-list.export');
 });
 
 Route::middleware([('role:dev')])->controller(PercentageController::class)->group( function() {

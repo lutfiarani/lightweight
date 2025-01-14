@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\WeightListModel;
+use App\Exports\WeightListExport;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\PercentageWeightModel;
 
 class WeightListController extends Controller
 {
     public function index(){
         $getPercentage = PercentageWeightModel::first();
-        return view('admin.weight-list.index', compact('getPercentage'));
+        return view('admin.weight-list.weight_list', compact('getPercentage'));
     }
 
     public function getData(Request $request){
@@ -54,5 +56,21 @@ class WeightListController extends Controller
     public function listArticle($id){
         $data = WeightListModel::list_article($id);
         return response()->json($data);
+    }
+
+    public function export(Request $request){
+        $filters = $request->only([
+            'start_date',
+            'end_date',
+            'factory',
+            'line',
+            'po_no',
+            'model',
+            'article'
+        ]);
+
+        $filename = 'weight-list-'.now()->format('Y-m-d-His') . '.xlsx';
+
+        return Excel::download(new WeightListExport($filters), $filename);
     }
 }
