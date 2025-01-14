@@ -15,6 +15,14 @@ class WeightModel extends Model
         return $data;
     }
 
+
+    public static function get_data($lotid){
+        $data = DB::selectResultSets("
+            EXEC GET_DATA @LOTID = '$lotid'
+        ");
+        return $data;
+    }
+
     public static function view_data_result($lotid){
         $data = DB::select("
             EXEC VIEW_PRODUCTION_RESULT_V2 @LOTID = '$lotid'

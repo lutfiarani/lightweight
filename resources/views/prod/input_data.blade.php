@@ -27,7 +27,7 @@
 <div class="app-main__inner">
     <div class="app-page-title" style="margin-bottom: 0.5rem; padding-left:1.5rem; padding-top:0.5rem; padding-bottom:0.5rem">
         <div class="page-title-wrapper">
-            <label  style="font-size:1rem; font-weight:800" >{{ mb_convert_case(Auth::user()->fullname, MB_CASE_TITLE, "UTF-8"); }} </label>
+            <label  style="font-size:1rem; font-weight:800" id="fullname">{{ mb_convert_case(Auth::user()->fullname, MB_CASE_TITLE, "UTF-8"); }} </label>
         </div>
     </div>
     
@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="position-relative mb-3">
-                                <label for="exampleEmail11" class="form-label"><b>qty</b></label>
+                                <label for="exampleEmail11" class="form-label"><b>Qty (Pairs) </b></label>
                                 <input name="size_qty" id="size_qty" id="exampleEmail11" placeholder="Size Qty" type="text" class="form-control" readonly>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="position-relative mb-3">
-                                <label for="exampleEmail11" class="form-label"><b>Target Quantity </b></label>
+                                <label for="exampleEmail11" class="form-label"><b>Target qty (Pairs)</b></label>
                                 <input name="target_qty"  id="target_qty" placeholder="Target Qty" type="number" class="form-control" readonly>
                             </div>
                         </div>
@@ -264,8 +264,10 @@
                     data:{po_no:po_no},
                     success: function(hasil){
                         console.log(hasil)
-                        var target_qty = $('#target_qty').val()
+                        // var target_qty = $('#target_qty').val()
+                        // console.log(target_qty)
 
+                        
                         var midas_data = ''
                         for (let index = 0; index < hasil.length; index++) {
                             midas_data += '<div class="card mb-1 widget-content bg-midnight-bloom" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">'
@@ -282,13 +284,15 @@
                             midas_data += '</div>'
                         }
 
+
                         var tampil_data = ''
                         for (let index = 0; index < hasil.length; index++) {
+                            
                             tampil_data += '<div class="card mb-1 widget-content bg-success" style="padding-left:0.7rem; padding-right:0.7rem; padding-top:0.3rem; padding-bottom:0.3rem">'
                             tampil_data += '    <div class="widget-content-wrapper text-white">'
                             tampil_data += '        <div class="widget-content-left">'
-                            tampil_data += '            <div class="widget-heading text-white"><h5>Target : <span class="target_qty"></span>pcs</h5></div>'
-                            tampil_data += '            <div class="widget-numbers text-white" style="float:left" ><span >'+hasil[index].jumlah_qty+'</span></div>'
+                            tampil_data += '            <div class="widget-heading text-white"><h5>Target : <span class="target_qty"></span> pairs</h5></div>'
+                            tampil_data += '            <div class="widget-numbers text-white " style="float:left" ><span id="'+hasil[index].alias+'">'+hasil[index].jumlah_qty+'</span><span> pcs</span></div>'
                             tampil_data += '        </div>'
                             tampil_data += '        <div class="widget-content-right">'
                             tampil_data += '            <div class="widget-numbers text-white" style="font-size:1.2rem" ><span >'+(hasil[index].min_rata_rata == ".00" ? "0.00" : hasil[index].min_rata_rata)+' - '+ (hasil[index].max_rata_rata == ".00" ? "0.00" :hasil[index].max_rata_rata)+'</span></div>'
@@ -296,6 +300,7 @@
                             tampil_data += '        </div>'
                             tampil_data += '    </div>'
                             tampil_data += '</div>'
+                            
                         }
                         $('#midas_data').html(midas_data)
                         $('#tampil_data_result').html(tampil_data)
@@ -304,7 +309,6 @@
             }
 
 
-            
 
             $('#lot_id').on('keydown', function (event) {
                 if (event.key === 'Enter' || event.keyCode === 13) {
@@ -431,10 +435,33 @@
                             $('#size').val('')
                             $('#size_qty').val('')
                             $('#target_qty').val('')
+                            $('#balance').val('')
                         }else if(hasil.po_information.length == 0){
                             alert('PO information not found')
+                            $('#po_no').val('')
+                            $('#model_name').val('')
+                            $('#article').val('')
+                            $('#po_qty').val('')
+                            $('#destination').val('')
+                            $('#crd').val('')
+                            $('#season').val('')
+                            $('#size').val('')
+                            $('#size_qty').val('')
+                            $('#target_qty').val('')
+                            $('#balance').val('')
                         }else if(hasil.size_information.length == 0){
                             alert('Size information not found')
+                            $('#po_no').val('')
+                            $('#model_name').val('')
+                            $('#article').val('')
+                            $('#po_qty').val('')
+                            $('#destination').val('')
+                            $('#crd').val('')
+                            $('#season').val('')
+                            $('#size').val('')
+                            $('#size_qty').val('')
+                            $('#target_qty').val('')
+                            $('#balance').val('')
                         }else{
                             var tampil_po = hasil.po_information[0]
                             var tampil_midas = hasil.midas_information[0]
@@ -457,6 +484,14 @@
                             $('#target_qty').val(tampil_size.TARGET_QTY)
 
                             $('.target_qty').text(tampil_size.TARGET_QTY);
+
+                            var name = '<?php echo Auth::user()->name; ?>'
+                            var id_name = '#'+name
+                            // console.log(id_name)
+                            var hasil_data = $(id_name).text() / 2
+                            var balance = tampil_size.TARGET_QTY - hasil_data
+                            $('#balance').val(balance)
+                            // console.log(hasil_data)
                         }
                     }
                 });

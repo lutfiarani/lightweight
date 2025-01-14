@@ -94,6 +94,10 @@ class WeightController extends Controller
         $time           = date('Y-m-d H:i:s');
         $fullname       = Auth::user()->fullname;
         $use_data       = 'Y';
+        $name           = Auth::user()->name;
+
+
+        // $cek_balance = WeightModel::cek_balance($po_no, $name);
 
         $save_data = DB::table('log_weight')->insert([
             'po_no'     => $po_no, 
