@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Login Page</title>
     <style>
         * {
@@ -155,11 +156,17 @@
         </div>
         <form action="{{route('login')}}" method="POST">
             @csrf
+            {{-- <div class="input-group">
+                <x-input-label for="email" :value="__('Username')" />
+                <x-text-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div> --}}
             <div class="input-group">
                 <x-input-label for="email" :value="__('Username')" />
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <x-text-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')" required autofocus />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
+            
             <div class="input-group">
                 <x-input-label for="password" :value="__('Password')" />
                 <x-text-input id="password" class="block mt-1 w-full"

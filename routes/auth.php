@@ -17,8 +17,12 @@ Route::middleware([('role:dev')])->group(function () {
 
 });
 Route::middleware('guest')->group(function () {
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
-        ->name('login');
+    // Route::get('login', [AuthenticatedSessionController::class, 'create'])
+    //     ->name('login');
+    Route::get('login', function () {
+        return view('auth.custom-login');
+    })->name('login');
+    
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 

@@ -143,7 +143,7 @@
 @section('js')
     <!-- <script src="http://maps.google.com/maps/api/js?sensor=true"></script> -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script defer src="{{ asset('template/assets/scripts/main.js')}}"></script>
+    {{-- <script defer src="{{ asset('template/assets/scripts/main.js')}}"></script>
     <script defer src="{{ asset('template/assets/scripts/demo.js')}}"></script>
     <script defer src="{{ asset('template/assets/scripts/toastr.js')}}"></script>
     <script defer src="{{ asset('template/assets/scripts/scrollbar.js')}}"></script>
@@ -151,7 +151,7 @@
     <script defer src="{{ asset('template/assets/scripts/maps.js')}}"></script>
     <script defer src="{{ asset('template/assets/scripts/chart_js.js')}}"></script>
 
-    <!-- <script defer src="{{ asset('template/assets/scripts/toastr.js')}}"></script> -->
+    <!-- <script defer src="{{ asset('template/assets/scripts/toastr.js')}}"></script> --> --}}
 
     
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>

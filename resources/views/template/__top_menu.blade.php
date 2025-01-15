@@ -76,18 +76,25 @@
                                 </div>
                             </div>
                         </div> --}}
-                        <div class="widget-content-left  ms-3 header-user-info">
-                            <div class="widget-heading">
-                                {{ Auth::user()->email }}, 
-                                <form method="POST" action="{{ route('logout') }}">
+                        <div class="widget-content-left ms-3 header-user-info">
+                            <div class="widget-heading d-flex align-items-center">
+                                <span>{{ Auth::user()->fullname }}</span>,
+                                {{-- <form method="POST" action="{{ route('logout') }}" class="ms-3">
                                     @csrf
-
                                     <x-dropdown-link :href="route('logout')"
-                                            onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
+                                            onclick="event.preventDefault(); this.closest('form').submit();">
                                         {{ __('Log Out') }}
                                     </x-dropdown-link>
-                                </form>
+                                </form> --}}
+                                <a href="{{ route('logout') }}" 
+                                    onclick="event.preventDefault(); 
+                                                document.getElementById('logout-form').submit();">
+                                        {{ __('Log Out') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                             </div>
                         </div>
                     </div>

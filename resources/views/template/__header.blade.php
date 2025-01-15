@@ -23,7 +23,7 @@
     <script defer src="{{ asset('template/assets/scripts/fullcalendar.js')}}"></script>
     <script defer src="{{ asset('template/assets/scripts/maps.js')}}"></script>
     <script defer src="{{ asset('template/assets/scripts/chart_js.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
     <style>
                 /* Mengatur tinggi container select2 */
         .select2-container .select2-selection--single {
